@@ -500,10 +500,119 @@
     }
   }
 
+  function setContactStatus(statusEl, type, message) {
+    if (!statusEl) {
+      return;
+    }
+
+    statusEl.textContent = message || '';
+    statusEl.classList.remove('is-success', 'is-error');
+    if (type === 'success') {
+      statusEl.classList.add('is-success');
+    } else if (type === 'error') {
+      statusEl.classList.add('is-error');
+    }
+  }
+
+  function initContactForm() {
+    if (!document.body.classList.contains('page-contact')) {
+      return;
+    }
+
+    var form = document.getElementById('contact-form');
+    if (!form) {
+      return;
+    }
+
+    var submitButton = form.querySelector('.contact-submit');
+    var statusEl = document.getElementById('contact-form-status');
+    var busy = false;
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (busy) {
+        return;
+      }
+
+      var formData = new FormData(form);
+      var payload = {
+        firstName: (formData.get('first-name') || '').toString().trim(),
+        lastName: (formData.get('last-name') || '').toString().trim(),
+        email: (formData.get('email') || '').toString().trim(),
+        phone: (formData.get('phone') || '').toString().trim(),
+        careerStage: (formData.get('career-stage') || '').toString().trim(),
+        sport: (formData.get('sport') || '').toString().trim(),
+        message: (formData.get('message') || '').toString().trim(),
+        referral: (formData.get('referral') || '').toString().trim(),
+        website: (formData.get('website') || '').toString().trim(),
+        turnstileToken:
+          (formData.get('turnstileToken') || '').toString().trim() ||
+          (formData.get('cf-turnstile-response') || '').toString().trim()
+      };
+
+      if (!payload.firstName || !payload.lastName || !payload.email) {
+        setContactStatus(statusEl, 'error', 'Please complete first name, last name, and email.');
+        return;
+      }
+
+      if (!emailPattern.test(payload.email)) {
+        setContactStatus(statusEl, 'error', 'Please enter a valid email address.');
+        return;
+      }
+
+      busy = true;
+      if (submitButton) {
+        submitButton.disabled = true;
+      }
+      setContactStatus(statusEl, '', 'Sending...');
+
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(function (response) {
+          return response
+            .json()
+            .catch(function () {
+              return { ok: false, error: 'Unexpected server response.' };
+            })
+            .then(function (data) {
+              return { response: response, data: data };
+            });
+        })
+        .then(function (result) {
+          if (!result.response.ok || !result.data.ok) {
+            throw new Error(result.data.error || 'Unable to send your message. Please try again.');
+          }
+
+          setContactStatus(statusEl, 'success', 'Thanks. Your message was received successfully.');
+          form.reset();
+        })
+        .catch(function (error) {
+          setContactStatus(
+            statusEl,
+            'error',
+            error && error.message ? error.message : 'Unable to send your message. Please try again.'
+          );
+        })
+        .finally(function () {
+          busy = false;
+          if (submitButton) {
+            submitButton.disabled = false;
+          }
+        });
+    });
+  }
+
   initBaseReveal();
   initHeaderState();
   initActiveNav();
   initTabs();
   initStatsCountUp();
   initFaqUi();
+  initContactForm();
 })();
