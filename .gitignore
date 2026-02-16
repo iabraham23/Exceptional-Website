@@ -1,0 +1,6 @@
+.env
+.env.local
+.env.*
+.DS_Store
+.claude/
+node_modules/
