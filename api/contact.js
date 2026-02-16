@@ -73,7 +73,7 @@ module.exports = async function handler(req, res) {
 
   try {
     const blob = await put(blobPath, JSON.stringify(record, null, 2), {
-      access: 'private',
+      access: 'public',
       addRandomSuffix: false,
       contentType: 'application/json'
     });
