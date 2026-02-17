@@ -23,6 +23,9 @@
       '.tabs-wrapper',
       '.story-grid > *',
       '.faq-item',
+      '.education-media-grid .education-image-slot',
+      '.education-context-inline .education-reality-card',
+      '.education-topic-accordion .education-topic',
       '.contact-grid > *',
       '.cta-content > *',
       '.footer-top > *'
