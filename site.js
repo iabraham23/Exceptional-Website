@@ -162,6 +162,67 @@
     });
   }
 
+  function initMobileNav() {
+    var header = document.querySelector('.site-header');
+    var nav = document.querySelector('.nav-container');
+    var toggle = document.querySelector('.mobile-menu-toggle');
+    var navLinks = document.querySelector('.nav-links');
+    var navCta = document.querySelector('.nav-cta');
+
+    if (!header || !nav || !toggle || !navLinks || !navCta) {
+      return;
+    }
+
+    var mobileBreakpoint = window.matchMedia('(max-width: 768px)');
+
+    function setMenuState(expanded) {
+      header.classList.toggle('menu-open', expanded);
+      toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      document.body.classList.toggle('mobile-menu-open', expanded);
+    }
+
+    function closeMenu() {
+      setMenuState(false);
+    }
+
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-controls', 'site-nav-links');
+    navLinks.id = navLinks.id || 'site-nav-links';
+
+    toggle.addEventListener('click', function () {
+      var willOpen = toggle.getAttribute('aria-expanded') !== 'true';
+      setMenuState(willOpen);
+    });
+
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    navCta.addEventListener('click', closeMenu);
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!mobileBreakpoint.matches || !header.classList.contains('menu-open')) {
+        return;
+      }
+
+      if (!nav.contains(event.target)) {
+        closeMenu();
+      }
+    });
+
+    mobileBreakpoint.addEventListener('change', function (event) {
+      if (!event.matches) {
+        closeMenu();
+      }
+    });
+  }
+
   function activateTab(buttons, panels, nextButton) {
     buttons.forEach(function (btn) {
       btn.classList.remove('active');
@@ -611,6 +672,7 @@
   initBaseReveal();
   initHeaderState();
   initActiveNav();
+  initMobileNav();
   initTabs();
   initStatsCountUp();
   initFaqUi();

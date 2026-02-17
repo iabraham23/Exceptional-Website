@@ -927,6 +927,77 @@ button {
 
   .mobile-menu-toggle {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background: rgba(20, 28, 46, 0.8);
+  }
+
+  .mobile-menu-toggle[aria-expanded='true'] {
+    border-color: rgba(201, 168, 76, 0.45);
+  }
+
+  .site-header.menu-open .nav-container {
+    height: auto;
+    min-height: 80px;
+    padding-top: 20px;
+    padding-bottom: 16px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    row-gap: 14px;
+  }
+
+  .site-header.menu-open .logo {
+    flex: 1;
+  }
+
+  .site-header.menu-open .nav-links {
+    order: 3;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 4px;
+    padding: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-bg-card);
+  }
+
+  .site-header.menu-open .nav-links a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 6px;
+  }
+
+  .site-header.menu-open .nav-links a::after {
+    display: none;
+  }
+
+  .site-header.menu-open .nav-links a:active {
+    background: rgba(201, 168, 76, 0.12);
+  }
+
+  .site-header.menu-open .nav-cta {
+    order: 4;
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .site-header.menu-open .mobile-menu-toggle span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .site-header.menu-open .mobile-menu-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .site-header.menu-open .mobile-menu-toggle span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
   }
 
   /* Hero */
@@ -2653,10 +2724,10 @@ button {
   }
 
   .page-about .story-image-placeholder::before {
-    top: -8px;
-    right: -8px;
-    bottom: 8px;
-    left: 8px;
+    top: 4px;
+    right: 4px;
+    bottom: 4px;
+    left: 4px;
   }
 
   /* Approach */
@@ -2695,6 +2766,10 @@ button {
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+body.mobile-menu-open {
+  overflow: hidden;
 }
 
 @media (max-width: 480px) {
