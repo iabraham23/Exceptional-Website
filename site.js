@@ -122,9 +122,30 @@
     }
 
     var ticking = false;
+    var lastScrollY = window.scrollY || 0;
+    var isHidden = false;
+    var hideAfter = 220;
+    var scrollDeltaThreshold = 8;
 
     var updateHeader = function () {
-      header.classList.toggle('is-scrolled', window.scrollY > 12);
+      var currentY = window.scrollY || 0;
+      var scrollingDown = currentY > lastScrollY + scrollDeltaThreshold;
+      var scrollingUp = currentY < lastScrollY - scrollDeltaThreshold;
+
+      header.classList.toggle('is-scrolled', currentY > 12);
+
+      if (header.classList.contains('menu-open')) {
+        isHidden = false;
+      } else if (currentY <= 24) {
+        isHidden = false;
+      } else if (currentY > hideAfter && scrollingDown) {
+        isHidden = true;
+      } else if (scrollingUp) {
+        isHidden = false;
+      }
+
+      header.classList.toggle('is-hidden', isHidden);
+      lastScrollY = currentY;
       ticking = false;
     };
 

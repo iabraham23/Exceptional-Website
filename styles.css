@@ -181,6 +181,7 @@ button {
   align-items: center;
   justify-content: space-between;
   height: 80px;
+  transition: height 0.28s ease;
 }
 
 .logo {
@@ -2786,12 +2787,20 @@ body.mobile-menu-open {
    PHASE 1 MOTION
    ============================================ */
 .site-header {
-  transition: background-color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+  transition: background-color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base), transform 0.32s ease;
 }
 
 .site-header.is-scrolled {
   border-bottom-color: var(--color-border);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+}
+
+.site-header.is-scrolled .nav-container {
+  height: 72px;
+}
+
+.site-header.is-hidden {
+  transform: translateY(-12px);
 }
 
 .motion-enabled [data-animate] {
