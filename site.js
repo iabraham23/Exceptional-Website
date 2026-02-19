@@ -25,7 +25,8 @@
       '.faq-item',
       '.education-media-grid .education-image-slot',
       '.education-context-inline .education-reality-card',
-      '.education-topic-accordion .education-topic',
+      '.education-reading-hint',
+      '.education-subsections .education-subsection',
       '.contact-grid > *',
       '.cta-content > *',
       '.footer-top > *'
@@ -40,7 +41,8 @@
       ['.services-detail-grid', '.service-detail'],
       ['.framework-grid', '.framework-item'],
       ['.process-steps', '.process-step'],
-      ['.serve-grid', '.serve-card']
+      ['.serve-grid', '.serve-card'],
+      ['.education-subsections', '.education-subsection']
     ];
 
     revealSelectors.forEach(function (selector) {
@@ -585,6 +587,120 @@
     }
   }
 
+  function initEducationSubsections() {
+    if (!document.body.classList.contains('page-athlete-education')) {
+      return;
+    }
+
+    var subsections = Array.prototype.slice.call(document.querySelectorAll('[data-education-subsection]'));
+    if (!subsections.length) {
+      return;
+    }
+
+    function getCasePanelByHash(hash) {
+      if (!hash || hash.charAt(0) !== '#') {
+        return null;
+      }
+      var id = hash.slice(1);
+      if (!id) {
+        return null;
+      }
+      var node = document.getElementById(id);
+      if (!node || !node.hasAttribute('data-case-panel')) {
+        return null;
+      }
+      return node;
+    }
+
+    function scrollPanelIntoView(panel, smooth) {
+      var header = document.querySelector('.site-header');
+      var headerOffset = (header ? header.offsetHeight : 0) + 18;
+      var targetTop = panel.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: targetTop,
+        behavior: smooth && !reduceMotion ? 'smooth' : 'auto'
+      });
+    }
+
+    function activateSubsectionCase(subsection, targetId, smoothScroll) {
+      var triggers = Array.prototype.slice.call(subsection.querySelectorAll('.education-case-trigger'));
+      var panels = Array.prototype.slice.call(subsection.querySelectorAll('[data-case-panel]'));
+      if (!triggers.length || !panels.length) {
+        return;
+      }
+
+      var targetPanel = subsection.querySelector('#' + targetId);
+      if (!targetPanel) {
+        targetPanel = panels[0];
+      }
+
+      panels.forEach(function (panel) {
+        panel.classList.toggle('is-active', panel === targetPanel);
+      });
+
+      var activeId = targetPanel.id;
+      triggers.forEach(function (trigger) {
+        var isActive = trigger.getAttribute('data-case-target') === activeId;
+        trigger.classList.toggle('is-active', isActive);
+        trigger.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+      });
+
+      if (smoothScroll) {
+        scrollPanelIntoView(targetPanel, true);
+      }
+    }
+
+    subsections.forEach(function (subsection) {
+      var triggers = Array.prototype.slice.call(subsection.querySelectorAll('.education-case-trigger'));
+      if (!triggers.length) {
+        return;
+      }
+
+      triggers.forEach(function (trigger, index) {
+        trigger.addEventListener('click', function () {
+          var targetId = trigger.getAttribute('data-case-target');
+          activateSubsectionCase(subsection, targetId, false);
+
+          if (targetId) {
+            if (window.history && window.history.pushState) {
+              window.history.pushState(null, '', '#' + targetId);
+            } else {
+              window.location.hash = targetId;
+            }
+          }
+        });
+
+        if (index === 0) {
+          activateSubsectionCase(subsection, trigger.getAttribute('data-case-target'), false);
+        }
+      });
+    });
+
+    function activateFromHash(hash, smooth) {
+      var panel = getCasePanelByHash(hash);
+      if (!panel) {
+        return;
+      }
+
+      var subsection = panel.closest('[data-education-subsection]');
+      if (!subsection) {
+        return;
+      }
+
+      activateSubsectionCase(subsection, panel.id, false);
+      if (smooth) {
+        scrollPanelIntoView(panel, true);
+      }
+    }
+
+    window.addEventListener('hashchange', function () {
+      activateFromHash(window.location.hash, false);
+    });
+
+    activateFromHash(window.location.hash, false);
+  }
+
   function setContactStatus(statusEl, type, message) {
     if (!statusEl) {
       return;
@@ -700,5 +816,6 @@
   initTabs();
   initStatsCountUp();
   initFaqUi();
+  initEducationSubsections();
   initContactForm();
 })();
