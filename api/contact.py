@@ -25,8 +25,13 @@ def get_env(name):
 
 def get_storage_config():
     region = get_env("AWS_REGION")
-    access_key_id = get_env("AWS_ACCESS_KEY_ID")
-    secret_access_key = get_env("AWS_SECRET_ACCESS_KEY")
+    access_key_id = get_env("AWS_WRITER_ACCESS_KEY_ID") or get_env("AWS_ACCESS_KEY_ID")
+    secret_access_key = (
+        get_env("AWS_WRITER_SECRET_ACCESS_KEY")
+        or get_env("AWS_SECRET_ACCESS_KEY")
+        or get_env("AWS_SECRET_ACESS_KEY")
+    )
+    session_token = get_env("AWS_WRITER_SESSION_TOKEN") or get_env("AWS_SESSION_TOKEN")
     bucket = get_env("AWS_S3_BUCKET")
 
     if not region or not access_key_id or not secret_access_key or not bucket:
@@ -36,6 +41,7 @@ def get_storage_config():
         "region": region,
         "access_key_id": access_key_id,
         "secret_access_key": secret_access_key,
+        "session_token": session_token,
         "bucket": bucket,
     }
 
@@ -147,6 +153,7 @@ class handler(BaseHTTPRequestHandler):
                 region_name=storage_config["region"],
                 aws_access_key_id=storage_config["access_key_id"],
                 aws_secret_access_key=storage_config["secret_access_key"],
+                aws_session_token=storage_config["session_token"] or None,
             )
             s3_client.put_object(
                 Bucket=storage_config["bucket"],
