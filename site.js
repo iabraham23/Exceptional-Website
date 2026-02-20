@@ -790,7 +790,7 @@
             throw new Error(result.data.error || 'Unable to send your message. Please try again.');
           }
 
-          setContactStatus(statusEl, 'success', 'Thanks. Your message was received successfully.');
+          setContactStatus(statusEl, 'success', 'Your message was received successfully. We will be in touch shortly');
           form.reset();
         })
         .catch(function (error) {
