@@ -768,7 +768,7 @@
       }
       setContactStatus(statusEl, '', 'Sending...');
 
-      fetch('/api/contact', {
+      fetch('/api/contact_handler', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
