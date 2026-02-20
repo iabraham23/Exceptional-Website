@@ -23,15 +23,29 @@ def get_env(name):
     return (os.getenv(name) or "").strip()
 
 
+def get_first_env(*names):
+    for name in names:
+        value = get_env(name)
+        if value:
+            return value, name
+    return "", ""
+
+
 def get_storage_config():
     region = get_env("AWS_REGION")
-    access_key_id = get_env("AWS_WRITER_ACCESS_KEY_ID") or get_env("AWS_ACCESS_KEY_ID")
-    secret_access_key = (
-        get_env("AWS_WRITER_SECRET_ACCESS_KEY")
-        or get_env("AWS_SECRET_ACCESS_KEY")
-        or get_env("AWS_SECRET_ACESS_KEY")
+    access_key_id, access_key_source = get_first_env(
+        "AWS_WRITER_ACCESS_KEY_ID",
+        "AWS_ACCESS_KEY_ID",
     )
-    session_token = get_env("AWS_WRITER_SESSION_TOKEN") or get_env("AWS_SESSION_TOKEN")
+    secret_access_key, secret_key_source = get_first_env(
+        "AWS_WRITER_SECRET_ACCESS_KEY",
+        "AWS_SECRET_ACCESS_KEY",
+        "AWS_SECRET_ACESS_KEY",
+    )
+    session_token, session_token_source = get_first_env(
+        "AWS_WRITER_SESSION_TOKEN",
+        "AWS_SESSION_TOKEN",
+    )
     bucket = get_env("AWS_S3_BUCKET")
 
     if not region or not access_key_id or not secret_access_key or not bucket:
@@ -41,7 +55,10 @@ def get_storage_config():
         "region": region,
         "access_key_id": access_key_id,
         "secret_access_key": secret_access_key,
+        "access_key_source": access_key_source,
+        "secret_key_source": secret_key_source,
         "session_token": session_token,
+        "session_token_source": session_token_source,
         "bucket": bucket,
     }
 
@@ -148,6 +165,17 @@ class handler(BaseHTTPRequestHandler):
         }
 
         try:
+            print(
+                "Contact form auth context: "
+                f"region={storage_config['region']} "
+                f"bucket={storage_config['bucket']} "
+                f"accessKeySource={storage_config['access_key_source']} "
+                f"secretKeySource={storage_config['secret_key_source']} "
+                f"hasSessionToken={'yes' if storage_config['session_token'] else 'no'} "
+                f"sessionTokenSource={storage_config['session_token_source'] or 'none'} "
+                f"accessKeySuffix={storage_config['access_key_id'][-4:]}",
+                flush=True,
+            )
             s3_client = boto3.client(
                 "s3",
                 region_name=storage_config["region"],
