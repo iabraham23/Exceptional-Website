@@ -4,7 +4,7 @@
   "rewrites": [
     {
       "source": "/api/contact",
-      "destination": "/api/contact.py"
+      "destination": "/api/contact_handler.py"
     }
   ]
 }
