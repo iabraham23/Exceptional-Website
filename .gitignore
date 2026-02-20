@@ -7,3 +7,6 @@ node_modules/
 .vercel
 .env*.local
 potential_changes.md
+api/contact_leads/
+__pycache__/
+*.pyc
