@@ -26,7 +26,7 @@ def get_env(name):
 def get_storage_config():
     region = get_env("AWS_REGION")
     access_key_id = get_env("AWS_ACCESS_KEY_ID")
-    secret_access_key = get_env("AWS_SECRET_ACCESS_KEY") or get_env("AWS_SECRET_ACESS_KEY")
+    secret_access_key = get_env("AWS_SECRET_ACCESS_KEY")
     bucket = get_env("AWS_S3_BUCKET")
 
     if not region or not access_key_id or not secret_access_key or not bucket:
