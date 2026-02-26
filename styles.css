@@ -1216,7 +1216,7 @@ button {
 }
 
 .services-intro {
-  max-width: 800px;
+  max-width: 860px;
   margin: 0 auto;
   text-align: center;
 }
@@ -1232,123 +1232,267 @@ button {
   background-color: var(--color-bg-dark);
 }
 
-.services-detail-grid {
+.services-scroll-layout {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px;
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+  gap: 34px;
+  align-items: start;
 }
 
-.service-detail {
-  background: var(--color-bg-card);
+.services-scroll-rail {
+  position: sticky;
+  top: 160px;
+  padding: 32px 28px 32px;
   border: 1px solid var(--color-border);
-  border-radius: 12px;
-  padding: 34px 32px;
-  transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+  border-radius: 14px;
+  background: linear-gradient(165deg, rgba(18, 26, 42, 0.98) 0%, rgba(14, 22, 36, 0.98) 100%);
 }
 
-.service-detail:hover {
-  border-color: rgba(201, 168, 76, 0.28);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px -22px rgba(0, 0, 0, 0.6);
+/* ---- Rolling number counter ---- */
+.services-scroll-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 8px;
 }
 
-.service-detail-number {
-  font-family: var(--font-display);
-  font-size: 42px;
-  font-weight: 700;
-  color: var(--color-gold);
-  opacity: 0.18;
-  line-height: 1;
-  margin-bottom: 14px;
+.services-scroll-number-wrapper {
+  height: 96px;
+  overflow: hidden;
+  position: relative;
 }
 
-.service-detail-title {
-  font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 600;
-  color: var(--color-text-primary);
-  margin-bottom: 16px;
-  line-height: 1.3;
-}
-
-.service-detail-desc {
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--color-text-secondary);
-  margin-bottom: 24px;
-}
-
-.service-detail-preview {
-  font-size: 16px;
-  line-height: 1.75;
-  color: var(--color-text-secondary);
-  margin-bottom: 16px;
-}
-
-.service-detail-more {
-  border-top: 1px solid var(--color-border-light);
-  padding-top: 14px;
-}
-
-.service-detail-more summary {
-  list-style: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  color: var(--color-gold-light);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-}
-
-.service-detail-more summary::-webkit-details-marker {
-  display: none;
-}
-
-.service-detail-more summary::after {
-  content: '+';
-  font-size: 20px;
-  line-height: 1;
-  transform: translateY(-1px);
-}
-
-.service-detail-more[open] summary::after {
-  content: '−';
-}
-
-.service-detail-more-content {
-  margin-top: 14px;
-}
-
-.service-detail-more-content .service-detail-desc {
-  margin-bottom: 16px;
-}
-
-.service-detail-list {
+.services-scroll-number-reel {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(0);
 }
 
-.service-detail-list li {
-  font-size: 15px;
-  color: var(--color-text-secondary);
-  padding-left: 20px;
+.services-scroll-digit {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 96px;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--color-gold);
+  height: 96px;
+  user-select: none;
+}
+
+.services-scroll-separator {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: rgba(201, 168, 76, 0.35);
+  align-self: center;
+  flex-shrink: 0;
+}
+
+.services-scroll-total {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  color: rgba(201, 168, 76, 0.35);
+  line-height: 1;
+}
+
+/* ---- Current title ---- */
+.services-scroll-current-title {
+  color: var(--color-text-primary);
+  font-size: 16px;
+  line-height: 1.45;
+  margin-bottom: 28px;
+  min-height: 24px;
+  transition: opacity 0.25s ease;
+}
+
+.services-scroll-current-title.is-fading {
+  opacity: 0;
+}
+
+/* ---- Progress track ---- */
+.services-scroll-track {
   position: relative;
-  line-height: 1.6;
+  padding-left: 20px;
 }
 
-.service-detail-list li::before {
+.services-scroll-track::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 10px;
-  width: 6px;
-  height: 6px;
+  left: 4px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(201, 168, 76, 0.12);
+  border-radius: 1px;
+}
+
+.services-scroll-track-fill {
+  position: absolute;
+  left: 4px;
+  top: 0;
+  width: 2px;
+  height: 0%;
+  background: var(--color-gold);
+  border-radius: 1px;
+  transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.services-scroll-nav-list {
+  list-style: none;
+  display: grid;
+  gap: 4px;
+}
+
+.services-scroll-nav-link {
+  display: block;
+  position: relative;
+  padding: 11px 14px 11px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  line-height: 1.45;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.services-scroll-nav-link::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background-color: var(--color-gold);
-  opacity: 0.6;
+  border: 2px solid rgba(201, 168, 76, 0.25);
+  background: rgba(14, 22, 36, 1);
+  transform: translate(0, -50%);
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.services-scroll-nav-link:hover,
+.services-scroll-nav-link:focus-visible {
+  color: var(--color-text-primary);
+  background: rgba(201, 168, 76, 0.06);
+}
+
+.services-scroll-nav-link.is-active {
+  color: var(--color-text-primary);
+}
+
+.services-scroll-nav-link.is-active::before {
+  border-color: var(--color-gold);
+  background: var(--color-gold);
+  box-shadow: 0 0 8px rgba(201, 168, 76, 0.5);
+}
+
+.services-scroll-nav-link.is-passed::before {
+  border-color: var(--color-gold);
+  background: var(--color-gold);
+}
+
+.services-scroll-panels {
+  display: grid;
+  gap: 22px;
+}
+
+.services-scroll-panel {
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 36px 34px;
+  background: linear-gradient(160deg, rgba(20, 28, 46, 0.98) 0%, rgba(18, 26, 42, 0.98) 100%);
+  position: relative;
+  scroll-margin-top: 118px;
+}
+
+.services-scroll-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 14px 0 0 14px;
+  background: linear-gradient(180deg, var(--color-gold) 0%, rgba(201, 168, 76, 0.08) 100%);
+}
+
+.services-scroll-panel-step {
+  font-family: var(--font-display);
+  color: rgba(201, 168, 76, 0.38);
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.services-scroll-panel-title {
+  font-family: var(--font-display);
+  color: var(--color-text-primary);
+  font-size: 34px;
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.services-scroll-panel-intro {
+  color: var(--color-text-secondary);
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  max-width: 760px;
+}
+
+.services-scope-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.services-scope-card {
+  border: 1px solid var(--color-border-light);
+  border-radius: 10px;
+  padding: 18px 18px 16px;
+  background: rgba(255, 255, 255, 0.01);
+  scroll-margin-top: 118px;
+}
+
+.services-scope-card h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.services-scope-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+}
+
+.services-scope-card ul {
+  display: grid;
+  gap: 8px;
+}
+
+.services-scope-card li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  position: relative;
+  padding-left: 16px;
+}
+
+.services-scope-card li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  position: absolute;
+  left: 0;
+  top: 9px;
+  opacity: 0.65;
 }
 
 /* ============================================
@@ -1456,6 +1600,21 @@ button {
 .team-section {
   padding: var(--section-padding) 0;
   background-color: var(--color-bg-dark);
+}
+
+.team-groups {
+  display: grid;
+  gap: 56px;
+}
+
+.team-group-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .team-grid {
@@ -1880,8 +2039,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 32px;
-  position: sticky;
-  top: 112px;
+  position: static;
 }
 
 .contact-info-card {
@@ -1934,6 +2092,21 @@ button {
 
 .contact-info-item a:hover {
   color: var(--color-gold);
+}
+
+.contact-info-item .contact-book-link {
+  margin-top: 8px;
+  padding: 10px 18px;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  border-radius: 6px;
+  color: var(--color-gold);
+}
+
+.contact-info-item .contact-book-link:hover {
+  color: var(--color-bg-dark);
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
 }
 
 /* What to Expect */
@@ -2036,12 +2209,49 @@ button {
     font-size: 42px;
   }
 
-  .services-detail-grid {
-    gap: 20px;
+  .services-scroll-layout {
+    grid-template-columns: 1fr;
+    gap: 22px;
   }
 
-  .service-detail {
-    padding: 28px 24px;
+  .services-scroll-rail {
+    position: static;
+    top: auto;
+    padding: 20px;
+  }
+
+  .services-scroll-counter {
+    margin-bottom: 6px;
+  }
+
+  .services-scroll-number-wrapper {
+    height: 56px;
+  }
+
+  .services-scroll-digit {
+    font-size: 56px;
+    height: 56px;
+  }
+
+  .services-scroll-track {
+    display: none;
+  }
+
+  .services-scroll-current-title {
+    margin-bottom: 0;
+  }
+
+  .services-scroll-panel {
+    min-height: auto;
+    padding: 30px 28px;
+  }
+
+  .services-scroll-panel-title {
+    font-size: 31px;
+  }
+
+  .services-scope-grid {
+    grid-template-columns: 1fr;
   }
 
   .story-grid {
@@ -2097,17 +2307,42 @@ button {
   }
 
   /* Services */
-  .services-detail-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
+  .services-scroll-number-wrapper {
+    height: 48px;
   }
 
-  .service-detail {
-    padding: 26px 20px;
+  .services-scroll-digit {
+    font-size: 48px;
+    height: 48px;
   }
 
-  .service-detail-title {
-    font-size: 26px;
+  .services-scroll-total {
+    font-size: 20px;
+  }
+
+  .services-scroll-panel {
+    padding: 26px 22px;
+  }
+
+  .services-scroll-panel-step {
+    font-size: 38px;
+  }
+
+  .services-scroll-panel-title {
+    font-size: 28px;
+  }
+
+  .services-scroll-panel-intro {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .services-scope-card {
+    padding: 16px 15px 14px;
+  }
+
+  .services-scope-card h3 {
+    font-size: 22px;
   }
 
   /* About */
@@ -2121,6 +2356,15 @@ button {
 
   .team-grid {
     grid-template-columns: 1fr;
+  }
+
+  .team-groups {
+    gap: 44px;
+  }
+
+  .team-group-title {
+    font-size: 24px;
+    margin-bottom: 20px;
   }
 
   /* Approach */
@@ -2200,36 +2444,13 @@ button {
   max-width: 640px;
 }
 
-/* Bold oversized service numbers */
-.page-services .service-detail-number {
-  font-size: 58px;
-  opacity: 0.12;
-  letter-spacing: -2px;
-  line-height: 1;
-  margin-bottom: 10px;
+.page-services .services-scroll-panel.is-active {
+  border-color: rgba(201, 168, 76, 0.4);
+  box-shadow: 0 20px 34px -28px rgba(201, 168, 76, 0.45);
 }
 
-/* Subtle gold accent edge and depth */
-.page-services .service-detail {
-  position: relative;
-  background: linear-gradient(160deg, rgba(20, 28, 46, 0.98) 0%, rgba(18, 26, 42, 0.98) 100%);
-  overflow: hidden;
-}
-
-.page-services .service-detail::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: linear-gradient(180deg, var(--color-gold) 0%, rgba(201, 168, 76, 0.15) 100%);
-  opacity: 0.8;
-}
-
-.page-services .service-detail:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 32px -24px rgba(201, 168, 76, 0.48);
+.page-services .services-scroll-panel.is-active .services-scroll-panel-step {
+  color: rgba(201, 168, 76, 0.62);
 }
 
 /* Services overview intro — accent divider */
@@ -3179,13 +3400,25 @@ button {
     margin: 0 auto;
   }
 
-  .page-services .service-detail {
-    transform: none;
-    box-shadow: none;
+  .page-services .services-scroll-rail {
+    padding: 16px;
   }
 
-  .page-services .service-detail-number {
-    font-size: 48px;
+  .page-services .services-scroll-number-wrapper {
+    height: 42px;
+  }
+
+  .page-services .services-scroll-digit {
+    font-size: 42px;
+    height: 42px;
+  }
+
+  .page-services .services-scroll-total {
+    font-size: 18px;
+  }
+
+  .page-services .services-scroll-current-title {
+    font-size: 14px;
   }
 
   /* About */
