@@ -1458,6 +1458,21 @@ button {
   background-color: var(--color-bg-dark);
 }
 
+.team-groups {
+  display: grid;
+  gap: 56px;
+}
+
+.team-group-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
 .team-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2121,6 +2136,15 @@ button {
 
   .team-grid {
     grid-template-columns: 1fr;
+  }
+
+  .team-groups {
+    gap: 44px;
+  }
+
+  .team-group-title {
+    font-size: 24px;
+    margin-bottom: 20px;
   }
 
   /* Approach */

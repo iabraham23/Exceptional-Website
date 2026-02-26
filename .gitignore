@@ -11,3 +11,5 @@ api/contact_leads/
 __pycache__/
 *.pyc
 cwc_indev_website/
+copy_rewrite_phase1.md
+reference_websites.md
