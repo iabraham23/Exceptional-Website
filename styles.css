@@ -2039,8 +2039,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 32px;
-  position: sticky;
-  top: 112px;
+  position: static;
 }
 
 .contact-info-card {
@@ -2093,6 +2092,21 @@ button {
 
 .contact-info-item a:hover {
   color: var(--color-gold);
+}
+
+.contact-info-item .contact-book-link {
+  margin-top: 8px;
+  padding: 10px 18px;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  border-radius: 6px;
+  color: var(--color-gold);
+}
+
+.contact-info-item .contact-book-link:hover {
+  color: var(--color-bg-dark);
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
 }
 
 /* What to Expect */

@@ -27,7 +27,7 @@
       '.education-media-grid .education-image-slot',
       '.education-context-inline .education-reality-card',
       '.education-reading-hint',
-      '.contact-grid > *',
+      '.contact-grid > :first-child',
       '.cta-content > *',
       '.footer-top > *'
     ];
@@ -341,17 +341,17 @@
     });
   }
 
-  function animateCount(el, endValue, prefix, suffix) {
-    var duration = 1200;
+  function animateCount(el, startValue, endValue, prefix, suffix, duration) {
+    var animationDuration = duration || 1200;
     var start = null;
 
     function step(timestamp) {
       if (!start) {
         start = timestamp;
       }
-      var progress = Math.min((timestamp - start) / duration, 1);
+      var progress = Math.min((timestamp - start) / animationDuration, 1);
       var eased = 1 - Math.pow(1 - progress, 3);
-      var current = Math.round(endValue * eased);
+      var current = Math.round(startValue + (endValue - startValue) * eased);
 
       el.textContent = prefix + current + suffix;
 
@@ -378,11 +378,30 @@
           return null;
         }
 
+        var end = parseFloat(match[2]);
+        var dataEnd = parseFloat(el.getAttribute('data-count-to'));
+        if (!isNaN(dataEnd)) {
+          end = dataEnd;
+        }
+
+        var startValue = 0;
+        var dataStart = parseFloat(el.getAttribute('data-count-from'));
+        if (!isNaN(dataStart)) {
+          startValue = dataStart;
+        }
+
+        var duration = parseInt(el.getAttribute('data-count-duration'), 10);
+        if (isNaN(duration) || duration <= 0) {
+          duration = 1200;
+        }
+
         return {
           el: el,
-          end: parseFloat(match[2]),
+          start: startValue,
+          end: end,
           prefix: match[1],
-          suffix: match[3]
+          suffix: match[3],
+          duration: duration
         };
       })
       .filter(Boolean);
@@ -393,7 +412,7 @@
 
     var run = function () {
       parsed.forEach(function (item) {
-        animateCount(item.el, item.end, item.prefix, item.suffix);
+        animateCount(item.el, item.start, item.end, item.prefix, item.suffix, item.duration);
       });
     };
 
