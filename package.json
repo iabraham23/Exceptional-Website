@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/iabraham23/Exceptional-Website#readme",
   "dependencies": {
-    "@vercel/blob": "^2.2.0"
+    "@aws-sdk/client-s3": "^3.993.0"
   }
 }

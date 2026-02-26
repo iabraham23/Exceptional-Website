@@ -75,8 +75,8 @@
   <section class="page-hero">
     <div class="section-container">
       <p class="section-eyebrow">Athlete Education</p>
-      <h1 class="page-hero-title">Understand the Financial Issues Athletes Face Most</h1>
-      <p class="page-hero-subtitle">Start with the planning issue that can cost you the most this season. Each section is built for athletes and focused on decisions you can act on right away.</p>
+      <h1 class="page-hero-title">Understand the Financial Decisions Athletes Face Most</h1>
+      <p class="page-hero-subtitle">Start with the issue most likely to affect your money this season. Each section is built for athletes and focused on practical next steps.</p>
       <div class="education-hero-cta">
         <a href="contact.html" class="btn btn-primary btn-lg">Schedule a Consultation</a>
       </div>
@@ -99,7 +99,7 @@
     <div class="section-container">
       <div class="section-header">
         <p class="section-eyebrow">Quick Context</p>
-        <h2 class="section-title">Why Athlete Planning Needs Specialized Execution</h2>
+        <h2 class="section-title">Why Athlete Planning Looks Different</h2>
       </div>
 
       <div class="education-context-inline">
@@ -129,140 +129,98 @@
       <div class="section-header">
         <p class="section-eyebrow">Case Study Scenarios</p>
         <h2 class="section-title">Start With What Impacts This Season's Money First</h2>
-        <p class="section-subtitle">Three focused scenario groups. Click any bullet-tab to reveal a condensed breakdown of the issue and what execution usually requires.</p>
+        <p class="section-subtitle">Choose a scenario, review the pressure points, and focus on the actions that usually prevent expensive mistakes.</p>
       </div>
 
-      <p class="education-reading-hint">Click any bullet to expand a condensed scenario, stakes, approach, and common misses.</p>
+      <div class="education-track-tabs" role="tablist" aria-label="Athlete education tracks">
+        <button type="button" class="education-track-tab is-active" id="education-tab-tax" role="tab" aria-selected="true" aria-controls="education-track-tax" data-education-track-target="education-track-tax">
+          Income and Tax Exposure
+        </button>
+        <button type="button" class="education-track-tab" id="education-tab-risk" role="tab" aria-selected="false" aria-controls="education-track-risk" data-education-track-target="education-track-risk">
+          Liquidity and Downside Protection
+        </button>
+        <button type="button" class="education-track-tab" id="education-tab-legacy" role="tab" aria-selected="false" aria-controls="education-track-legacy" data-education-track-target="education-track-legacy">
+          Post-Career and Legacy Readiness
+        </button>
+      </div>
 
       <div class="education-subsections">
-        <article class="education-subsection education-subsection--tax" data-education-subsection>
+        <article class="education-subsection education-subsection--tax is-active" id="education-track-tax" data-education-track-panel role="tabpanel" aria-labelledby="education-tab-tax" aria-hidden="false">
           <div class="education-subsection-head">
+            <p class="education-subsection-kicker">Track 01</p>
             <h3>Income and Tax Exposure</h3>
-            <p>This is where athletes most often lose money early: taxes are reactive, income is irregular, and decisions happen too quickly.</p>
+            <p>Most early losses happen here. Income is irregular, withholding is limited, and tax decisions are often delayed.</p>
           </div>
-          <div class="education-subsection-body">
-            <p class="education-case-list-label">Scenarios</p>
-            <ul class="education-case-list" aria-label="Income and Tax Exposure scenarios">
-              <li><button type="button" class="education-case-trigger is-active" data-case-target="case-nil-quarterly" aria-controls="case-nil-quarterly" aria-expanded="true">NIL Income and Quarterly Tax Planning</button></li>
-              <li><button type="button" class="education-case-trigger" data-case-target="case-jock-tax" aria-controls="case-jock-tax" aria-expanded="false">Jock Tax and Multi-State Filings</button></li>
-              <li><button type="button" class="education-case-trigger" data-case-target="case-endorsement-1099" aria-controls="case-endorsement-1099" aria-expanded="false">Endorsement and 1099 Income Structuring</button></li>
-            </ul>
-            <div class="education-case-panel-wrap">
-              <article class="education-case-panel is-active" id="case-nil-quarterly" data-case-panel>
-                <h4>NIL Income and Quarterly Tax Planning</h4>
-                <p><strong>Scenario:</strong> NIL income lands as 1099 cash with no withholding.</p>
-                <p><strong>Stakes:</strong> Tax liabilities show up later, after spending patterns are already set.</p>
-                <p><strong>Condensed approach:</strong> Set reserve percentages by income type and tie payments to fixed quarterly checkpoints.</p>
-                <ul>
-                  <li>Common miss: treating gross NIL receipts as spendable.</li>
-                  <li>Common miss: skipping estimated payment dates.</li>
-                </ul>
-              </article>
-              <article class="education-case-panel" id="case-jock-tax" data-case-panel>
-                <h4>Jock Tax and Multi-State Filings</h4>
-                <p><strong>Scenario:</strong> Games, travel, and appearances create filing obligations in multiple states.</p>
-                <p><strong>Stakes:</strong> Late mapping of exposures can cause penalties and cash-flow stress.</p>
-                <p><strong>Condensed approach:</strong> Build a season-long state map early and coordinate projections with your CPA.</p>
-                <ul>
-                  <li>Common miss: waiting until year-end to reconcile state income.</li>
-                  <li>Common miss: assuming one-state withholding solves the full picture.</li>
-                </ul>
-              </article>
-              <article class="education-case-panel" id="case-endorsement-1099" data-case-panel>
-                <h4>Endorsement and 1099 Income Structuring</h4>
-                <p><strong>Scenario:</strong> Deal income timing, expenses, and contract terms vary across partnerships.</p>
-                <p><strong>Stakes:</strong> Net after-tax outcomes can underperform headline values.</p>
-                <p><strong>Condensed approach:</strong> Model net economics before signing and standardize documentation for every deal.</p>
-                <ul>
-                  <li>Common miss: signing before reviewing after-tax cash flow.</li>
-                  <li>Common miss: ad hoc records that increase tax friction later.</li>
-                </ul>
-              </article>
-            </div>
+          <div class="education-scenario-grid">
+            <article class="education-scenario-card">
+              <p class="education-scenario-tag">High priority for NIL earners and rookies</p>
+              <h4>NIL Income and Quarterly Tax Planning</h4>
+              <p>NIL income usually arrives without withholding, so cash feels higher than it truly is. It matters because taxes can become a large surprise if reserves are not set immediately.</p>
+            </article>
+            <article class="education-scenario-card">
+              <p class="education-scenario-tag">Most common in active travel schedules</p>
+              <h4>Jock Tax and Multi-State Filings</h4>
+              <p>Travel, game days, and appearances can create tax filings in multiple states. It matters because waiting until year-end often leads to penalties, rushed decisions, and avoidable stress.</p>
+            </article>
+            <article class="education-scenario-card">
+              <p class="education-scenario-tag">Critical when endorsement deals scale</p>
+              <h4>Endorsement and 1099 Income Structuring</h4>
+              <p>Endorsement deals differ in timing, costs, and tax impact, even when headline amounts look strong. It matters because take-home cash can be much lower than expected without upfront planning.</p>
+            </article>
           </div>
+          <p class="education-track-note">Questions about income and tax exposure for your situation? Reach out and we can help you prioritize the next steps.</p>
         </article>
 
-        <article class="education-subsection education-subsection--risk" data-education-subsection>
+        <article class="education-subsection education-subsection--risk" id="education-track-risk" data-education-track-panel role="tabpanel" aria-labelledby="education-tab-risk" aria-hidden="true">
           <div class="education-subsection-head">
+            <p class="education-subsection-kicker">Track 02</p>
             <h3>Liquidity and Downside Protection</h3>
-            <p>Strong years can still create instability if reserves, downside planning, and household governance are not built early.</p>
+            <p>Even strong years can become unstable without reserve planning and clear boundaries.</p>
           </div>
-          <div class="education-subsection-body">
-            <p class="education-case-list-label">Scenarios</p>
-            <ul class="education-case-list" aria-label="Liquidity and Downside Protection scenarios">
-              <li><button type="button" class="education-case-trigger is-active" data-case-target="case-signing-bonus" aria-controls="case-signing-bonus" aria-expanded="true">Signing Bonus and Cash Reserve Strategy</button></li>
-              <li><button type="button" class="education-case-trigger" data-case-target="case-injury-risk" aria-controls="case-injury-risk" aria-expanded="false">Injury Risk and Career Volatility</button></li>
-              <li><button type="button" class="education-case-trigger" data-case-target="case-family-boundaries" aria-controls="case-family-boundaries" aria-expanded="false">Family Support Boundaries and Governance</button></li>
-            </ul>
-            <div class="education-case-panel-wrap">
-              <article class="education-case-panel is-active" id="case-signing-bonus" data-case-panel>
-                <h4>Signing Bonus and Cash Reserve Strategy</h4>
-                <p><strong>Scenario:</strong> A large deposit arrives before tax obligations and long-term priorities are fully mapped.</p>
-                <p><strong>Stakes:</strong> Early commitments can reduce flexibility for seasons that follow.</p>
-                <p><strong>Condensed approach:</strong> Split cash immediately into tax reserve, operating liquidity, and long-term allocation buckets.</p>
-                <ul>
-                  <li>Common miss: major spending before reserve funding is complete.</li>
-                  <li>Common miss: no defined minimum liquidity target.</li>
-                </ul>
-              </article>
-              <article class="education-case-panel" id="case-injury-risk" data-case-panel>
-                <h4>Injury Risk and Career Volatility</h4>
-                <p><strong>Scenario:</strong> Availability and role can shift quickly in professional sports.</p>
-                <p><strong>Stakes:</strong> Income plans based on best-case assumptions can fail under stress.</p>
-                <p><strong>Condensed approach:</strong> Layer protection planning with downside cash-flow models and clear spending guardrails.</p>
-                <ul>
-                  <li>Common miss: insurance decisions made without full-plan context.</li>
-                  <li>Common miss: no scenario model for reduced or interrupted earnings.</li>
-                </ul>
-              </article>
-              <article class="education-case-panel" id="case-family-boundaries" data-case-panel>
-                <h4>Family Support Boundaries and Governance</h4>
-                <p><strong>Scenario:</strong> Support requests often increase as income becomes visible.</p>
-                <p><strong>Stakes:</strong> Generosity without structure can conflict with long-term priorities.</p>
-                <p><strong>Condensed approach:</strong> Define decision rights, support policies, and review rules before requests become urgent.</p>
-                <ul>
-                  <li>Common miss: open-ended commitments with no boundaries.</li>
-                  <li>Common miss: inconsistent approval process across requests.</li>
-                </ul>
-              </article>
-            </div>
+          <div class="education-scenario-grid">
+            <article class="education-scenario-card">
+              <p class="education-scenario-tag">Early-career cash discipline driver</p>
+              <h4>Signing Bonus and Cash Reserve Strategy</h4>
+              <p>A large deposit can create pressure to spend before taxes and long-term priorities are mapped. It matters because early commitments can limit flexibility for future seasons.</p>
+            </article>
+            <article class="education-scenario-card">
+              <p class="education-scenario-tag">Protects against downside earnings shocks</p>
+              <h4>Injury Risk and Career Volatility</h4>
+              <p>Injury, role changes, or roster movement can shift earnings quickly. It matters because plans built only on best-case income often break when reality changes.</p>
+            </article>
+            <article class="education-scenario-card">
+              <p class="education-scenario-tag">Needed as income visibility grows</p>
+              <h4>Family Support Boundaries and Governance</h4>
+              <p>Support requests typically increase as income becomes more visible. It matters because generosity without boundaries can conflict with long-term priorities and cash stability.</p>
+            </article>
           </div>
+          <p class="education-track-note">Questions about liquidity and downside protection planning? Reach out and we can walk through practical next steps.</p>
         </article>
 
-        <article class="education-subsection education-subsection--legacy" data-education-subsection>
+        <article class="education-subsection education-subsection--legacy" id="education-track-legacy" data-education-track-panel role="tabpanel" aria-labelledby="education-tab-legacy" aria-hidden="true">
           <div class="education-subsection-head">
+            <p class="education-subsection-kicker">Track 03</p>
             <h3>Post-Career and Legacy Readiness</h3>
-            <p>This phase is less about peak income and more about durability, governance, and sustaining your family plan over decades.</p>
+            <p>Legacy planning is about durability: sustainable income, clear governance, and continuity after playing years.</p>
           </div>
-          <div class="education-subsection-body">
-            <p class="education-case-list-label">Scenarios</p>
-            <ul class="education-case-list" aria-label="Post-Career and Legacy Readiness scenarios">
-              <li><button type="button" class="education-case-trigger is-active" data-case-target="case-post-career" aria-controls="case-post-career" aria-expanded="true">Post-Career Transition Planning</button></li>
-              <li><button type="button" class="education-case-trigger" data-case-target="case-legacy-governance" aria-controls="case-legacy-governance" aria-expanded="false">Family Governance and Decision Rights</button></li>
-            </ul>
-            <div class="education-case-panel-wrap">
-              <article class="education-case-panel is-active" id="case-post-career" data-case-panel>
-                <h4>Post-Career Transition Planning</h4>
-                <p><strong>Scenario:</strong> Active-income cadence ends while lifestyle and family obligations continue.</p>
-                <p><strong>Stakes:</strong> Plans built only for peak earning years can underdeliver in retirement.</p>
-                <p><strong>Condensed approach:</strong> Rebuild the plan around sustainable withdrawal rates, tax efficiency, and realistic spending horizons.</p>
-                <ul>
-                  <li>Common miss: delaying transition planning until final seasons.</li>
-                  <li>Common miss: retirement lifestyle assumptions not stress-tested.</li>
-                </ul>
-              </article>
-              <article class="education-case-panel" id="case-legacy-governance" data-case-panel>
-                <h4>Family Governance and Decision Rights</h4>
-                <p><strong>Scenario:</strong> More capital and more stakeholders increase complexity in household decisions.</p>
-                <p><strong>Stakes:</strong> Without governance, execution slows and priorities drift over time.</p>
-                <p><strong>Condensed approach:</strong> Set roles, escalation paths, and recurring decision checkpoints tied to your long-term plan.</p>
-                <ul>
-                  <li>Common miss: no written framework for who decides what.</li>
-                  <li>Common miss: support expectations not aligned with long-term targets.</li>
-                </ul>
-              </article>
-            </div>
+          <div class="education-scenario-grid">
+            <article class="education-scenario-card">
+              <p class="education-scenario-tag">Planning horizon extends 30+ years</p>
+              <h4>Post-Career Transition Planning</h4>
+              <p>Post-career life usually includes the same obligations with a different income pattern. It matters because plans built only for peak years may not hold up over decades.</p>
+            </article>
+            <article class="education-scenario-card">
+              <p class="education-scenario-tag">Essential for multi-household decision clarity</p>
+              <h4>Family Governance and Decision Rights</h4>
+              <p>As assets and stakeholders grow, decisions become more complex and slower. It matters because clear roles and decision rules keep priorities aligned over time.</p>
+            </article>
+            <article class="education-scenario-card">
+              <p class="education-scenario-tag">Supports durable multi-generation planning</p>
+              <h4>Estate and Succession Coordination</h4>
+              <p>Estate, legal, and tax plans need to evolve together as your balance sheet changes. It matters because gaps between documents and implementation can create friction and unnecessary tax drag.</p>
+            </article>
           </div>
+          <p class="education-track-note">Questions about post-career and legacy readiness? Reach out and we can help you frame a practical long-term plan.</p>
         </article>
       </div>
 
@@ -310,7 +268,7 @@
             <span class="logo-divider" aria-hidden="true"></span>
             <span class="logo-text"><span class="logo-text-top">Exceptional</span><span class="logo-text-bottom">Wealth Group</span></span>
           </a>
-          <p class="footer-tagline">Portland's premier wealth management firm dedicated to professional athletes.</p>
+          <p class="footer-tagline">Fee-only fiduciary planning for athletes, rooted in Portland and serving clients nationwide.</p>
           <div class="footer-newsletter">
             <p class="newsletter-label">Stay Informed</p>
             <form class="newsletter-form">
@@ -323,12 +281,12 @@
           <div class="footer-col">
             <h4>Services</h4>
             <ul>
-              <li><a href="services.html#investment-management">Investment Management</a></li>
-              <li><a href="services.html#tax-planning">Tax Planning</a></li>
-              <li><a href="services.html#estate-planning">Estate Planning</a></li>
-              <li><a href="services.html#risk-management">Risk Management</a></li>
-              <li><a href="services.html#contract-analysis">Contract Analysis</a></li>
-              <li><a href="services.html#philanthropy">Philanthropy</a></li>
+              <li><a href="services.html#service-track-01">Investment Management</a></li>
+              <li><a href="services.html#service-track-01">Tax Planning</a></li>
+              <li><a href="services.html#service-track-02">Estate Planning</a></li>
+              <li><a href="services.html#service-track-02">Risk Management</a></li>
+              <li><a href="services.html#service-track-03">Contract Analysis</a></li>
+              <li><a href="services.html#service-track-04">Philanthropy</a></li>
             </ul>
           </div>
           <div class="footer-col">
@@ -345,8 +303,8 @@
             <h4>Explore</h4>
             <ul>
               <li><a href="approach.html#investment-philosophy">How We Invest</a></li>
-              <li><a href="services.html#career-transition">Career Transition</a></li>
-              <li><a href="services.html#financial-education">Financial Literacy</a></li>
+              <li><a href="services.html#service-track-03">Career Transition</a></li>
+              <li><a href="services.html#service-track-04">Financial Literacy</a></li>
               <li><a href="athlete-education.html">Athlete Education</a></li>
               <li><a href="faq.html">Common Questions</a></li>
               <li><a href="contact.html">Schedule a Call</a></li>
