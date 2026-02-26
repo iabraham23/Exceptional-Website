@@ -20,6 +20,7 @@
       '.stats-container .stat-item',
       '.section-header > *',
       '.services-intro',
+      '.services-scroll-rail',
       '.tabs-wrapper',
       '.story-grid > *',
       '.faq-item',
@@ -38,6 +39,8 @@
       ['.team-grid', '.team-card'],
       ['.philosophy-pillars', '.pillar-card'],
       ['.services-detail-grid', '.service-detail'],
+      ['.services-scroll-panels', '.services-scroll-panel'],
+      ['.services-scope-grid', '.services-scope-card'],
       ['.framework-grid', '.framework-item'],
       ['.process-steps', '.process-step'],
       ['.serve-grid', '.serve-card']
@@ -67,6 +70,8 @@
     applyRevealVariant('.story-grid > :last-child', 'right');
     applyRevealVariant('.services-detail-grid .service-detail:nth-child(odd)', 'left');
     applyRevealVariant('.services-detail-grid .service-detail:nth-child(even)', 'right');
+    applyRevealVariant('.services-scroll-panels .services-scroll-panel:nth-child(odd)', 'left');
+    applyRevealVariant('.services-scroll-panels .services-scroll-panel:nth-child(even)', 'right');
     applyRevealVariant('.cta-content > *', 'soft');
     applyRevealVariant('.stats-container .stat-item', 'soft');
 
@@ -778,6 +783,163 @@
     }
   }
 
+  function initServicesScrollRail() {
+    if (!document.body.classList.contains('page-services')) {
+      return;
+    }
+
+    var panels = Array.prototype.slice.call(document.querySelectorAll('.services-scroll-panel[data-service-step]'));
+    var links = Array.prototype.slice.call(document.querySelectorAll('[data-services-nav-link]'));
+    var numberReel = document.querySelector('[data-services-number-reel]');
+    var currentTitle = document.querySelector('[data-services-current-title]');
+    var trackFill = document.querySelector('[data-services-track-fill]');
+    if (!panels.length || !links.length || !numberReel || !currentTitle) {
+      return;
+    }
+
+    var digitHeight = numberReel.querySelector('.services-scroll-digit');
+    var activeIndex = 0;
+    var titleFadeTimer = null;
+
+    function getPanelFromLink(link) {
+      var href = link.getAttribute('href') || '';
+      if (!href || href.charAt(0) !== '#') {
+        return null;
+      }
+      return document.getElementById(href.slice(1));
+    }
+
+    function setActivePanel(targetPanel) {
+      if (!targetPanel) {
+        return;
+      }
+
+      var newIndex = panels.indexOf(targetPanel);
+      if (newIndex < 0) {
+        newIndex = 0;
+      }
+
+      panels.forEach(function (panel) {
+        panel.classList.toggle('is-active', panel === targetPanel);
+      });
+
+      links.forEach(function (link, linkIndex) {
+        var panelForLink = getPanelFromLink(link);
+        var isActive = panelForLink === targetPanel;
+        var isPassed = linkIndex < newIndex;
+        link.classList.toggle('is-active', isActive);
+        link.classList.toggle('is-passed', isPassed);
+        if (isActive) {
+          link.setAttribute('aria-current', 'true');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+
+      // Rolling number animation
+      if (digitHeight) {
+        var h = digitHeight.offsetHeight;
+        numberReel.style.transform = 'translateY(-' + (newIndex * h) + 'px)';
+      }
+
+      // Progress track fill
+      if (trackFill) {
+        var fillPercent = panels.length > 1
+          ? (newIndex / (panels.length - 1)) * 100
+          : 0;
+        trackFill.style.height = fillPercent + '%';
+      }
+
+      // Title fade transition
+      var newTitle = targetPanel.getAttribute('data-service-title') || '';
+      if (newIndex !== activeIndex || currentTitle.textContent !== newTitle) {
+        if (titleFadeTimer) {
+          window.clearTimeout(titleFadeTimer);
+        }
+        currentTitle.classList.add('is-fading');
+        titleFadeTimer = window.setTimeout(function () {
+          currentTitle.textContent = newTitle;
+          currentTitle.classList.remove('is-fading');
+          titleFadeTimer = null;
+        }, reduceMotion ? 0 : 250);
+      }
+
+      activeIndex = newIndex;
+    }
+
+    links.forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        var targetPanel = getPanelFromLink(link);
+        if (!targetPanel) {
+          return;
+        }
+
+        event.preventDefault();
+        var header = document.querySelector('.site-header');
+        var offset = header ? header.offsetHeight + 18 : 18;
+        var targetTop = targetPanel.getBoundingClientRect().top + window.scrollY - offset;
+
+        window.scrollTo({
+          top: targetTop,
+          behavior: reduceMotion ? 'auto' : 'smooth'
+        });
+
+        if (window.history && window.history.pushState) {
+          window.history.pushState(null, '', '#' + targetPanel.id);
+        } else {
+          window.location.hash = targetPanel.id;
+        }
+      });
+    });
+
+    if (!('IntersectionObserver' in window)) {
+      setActivePanel(panels[0]);
+      return;
+    }
+
+    var currentPanel = null;
+    var observer = new IntersectionObserver(
+      function (entries) {
+        var visible = entries.filter(function (entry) {
+          return entry.isIntersecting;
+        });
+
+        if (!visible.length) {
+          return;
+        }
+
+        visible.sort(function (a, b) {
+          return b.intersectionRatio - a.intersectionRatio;
+        });
+
+        if (visible[0].target !== currentPanel) {
+          currentPanel = visible[0].target;
+          setActivePanel(currentPanel);
+        }
+      },
+      {
+        threshold: [0.2, 0.4, 0.6, 0.8],
+        rootMargin: '-18% 0px -38% 0px'
+      }
+    );
+
+    panels.forEach(function (panel) {
+      observer.observe(panel);
+    });
+
+    var fromHash = null;
+    if (window.location.hash && window.location.hash.charAt(0) === '#') {
+      var hashNode = document.getElementById(window.location.hash.slice(1));
+      if (hashNode) {
+        fromHash = hashNode.classList.contains('services-scroll-panel')
+          ? hashNode
+          : hashNode.closest('.services-scroll-panel');
+      }
+    }
+
+    setActivePanel(fromHash && panels.indexOf(fromHash) > -1 ? fromHash : panels[0]);
+  }
+
   function setContactStatus(statusEl, type, message) {
     if (!statusEl) {
       return;
@@ -894,5 +1056,6 @@
   initStatsCountUp();
   initFaqUi();
   initEducationSubsections();
+  initServicesScrollRail();
   initContactForm();
 })();
