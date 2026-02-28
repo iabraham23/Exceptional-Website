@@ -50,6 +50,7 @@
       ['.serve-grid', '.serve-card'],
       ['.athlete-feature-blocks', '.athlete-feature-block'],
       ['.athlete-service-rows', '.athlete-service-row'],
+      ['.entertainer-artisan-coverage-grid', '.entertainer-artisan-coverage-card'],
       ['.entertainer-masonry', '.entertainer-masonry-card'],
       ['.entertainer-workstream-panels', '.entertainer-workstream-panel'],
       ['.entertainer-lane-cards', '.entertainer-lane-card'],
@@ -1122,6 +1123,109 @@
     updateArrows();
   }
 
+  function initEntertainerCoverageCards() {
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.entertainer-artisan-coverage-card'));
+    var grid = document.querySelector('.entertainer-artisan-coverage-grid');
+    if (!cards.length || !grid) {
+      return;
+    }
+
+    var activeIndex = 0;
+    var rotationTimer = null;
+    var interactionLock = false;
+    var inViewport = true;
+
+    function setActive(index) {
+      var nextIndex = index;
+      if (nextIndex < 0) {
+        nextIndex = cards.length - 1;
+      } else if (nextIndex >= cards.length) {
+        nextIndex = 0;
+      }
+
+      activeIndex = nextIndex;
+      cards.forEach(function (card, idx) {
+        card.classList.toggle('is-active', idx === activeIndex);
+      });
+    }
+
+    function stopRotation() {
+      if (rotationTimer) {
+        window.clearInterval(rotationTimer);
+        rotationTimer = null;
+      }
+    }
+
+    function startRotation() {
+      if (reduceMotion || cards.length < 2 || interactionLock || !inViewport || rotationTimer) {
+        return;
+      }
+
+      rotationTimer = window.setInterval(function () {
+        setActive(activeIndex + 1);
+      }, 2800);
+    }
+
+    cards.forEach(function (card, idx) {
+      card.setAttribute('tabindex', '0');
+
+      card.addEventListener('mouseenter', function () {
+        interactionLock = true;
+        stopRotation();
+        setActive(idx);
+      });
+
+      card.addEventListener('mouseleave', function () {
+        interactionLock = false;
+        startRotation();
+      });
+
+      card.addEventListener('focus', function () {
+        interactionLock = true;
+        stopRotation();
+        setActive(idx);
+      });
+
+      card.addEventListener('blur', function () {
+        interactionLock = false;
+        startRotation();
+      });
+
+      card.addEventListener('click', function () {
+        setActive(idx);
+      });
+    });
+
+    setActive(0);
+
+    if ('IntersectionObserver' in window) {
+      inViewport = false;
+      var coverageObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.target !== grid) {
+              return;
+            }
+
+            inViewport = entry.isIntersecting;
+            if (inViewport) {
+              startRotation();
+            } else {
+              stopRotation();
+            }
+          });
+        },
+        {
+          threshold: 0.28
+        }
+      );
+
+      coverageObserver.observe(grid);
+    }
+
+    startRotation();
+  }
+
   initBaseReveal();
   initHeaderState();
   initActiveNav();
@@ -1133,4 +1237,5 @@
   initServicesScrollRail();
   initContactForm();
   initAthleteTimeline();
+  initEntertainerCoverageCards();
 })();
