@@ -1,4 +1,26 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/athlete-education",
+      "destination": "/athletes#education",
+      "permanent": true
+    },
+    {
+      "source": "/athlete-education.html",
+      "destination": "/athletes#education",
+      "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "/athletes#faqs",
+      "permanent": true
+    },
+    {
+      "source": "/faq.html",
+      "destination": "/athletes#faqs",
+      "permanent": true
+    }
+  ]
 }

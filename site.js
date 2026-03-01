@@ -29,7 +29,11 @@
       '.education-reading-hint',
       '.contact-grid > :first-child',
       '.cta-content > *',
-      '.footer-top > *'
+      '.footer-top > *',
+      '.athlete-stat-bar',
+      '.athlete-rhythm-split > *',
+      '.entertainer-hero-tagline',
+      '.entertainer-revenue-flow-card'
     ];
 
     var staggerGroups = [
@@ -43,7 +47,14 @@
       ['.services-scope-grid', '.services-scope-card'],
       ['.framework-grid', '.framework-item'],
       ['.process-steps', '.process-step'],
-      ['.serve-grid', '.serve-card']
+      ['.serve-grid', '.serve-card'],
+      ['.athlete-feature-blocks', '.athlete-feature-block'],
+      ['.athlete-service-rows', '.athlete-service-row'],
+      ['.entertainer-artisan-coverage-grid', '.entertainer-artisan-coverage-card'],
+      ['.entertainer-masonry', '.entertainer-masonry-card'],
+      ['.entertainer-workstream-panels', '.entertainer-workstream-panel'],
+      ['.entertainer-lane-cards', '.entertainer-lane-card'],
+      ['.entertainer-immersive-panels', '.entertainer-immersive-panel']
     ];
 
     revealSelectors.forEach(function (selector) {
@@ -173,13 +184,29 @@
   }
 
   function initActiveNav() {
-    var currentPath = window.location.pathname.split('/').pop();
-    if (!currentPath) {
-      currentPath = 'index.html';
+    function normalizePageRef(value) {
+      if (!value) {
+        return 'index';
+      }
+
+      var ref = String(value)
+        .split('#')[0]
+        .split('?')[0]
+        .trim()
+        .replace(/^\.?\//, '')
+        .replace(/\/+$/, '');
+
+      if (!ref) {
+        return 'index';
+      }
+
+      return ref.replace(/\.html$/i, '');
     }
 
-    document.querySelectorAll('.nav-links a').forEach(function (link) {
-      var href = (link.getAttribute('href') || '').split('#')[0];
+    var currentPath = normalizePageRef(window.location.pathname);
+
+    document.querySelectorAll('.nav-links > li > a').forEach(function (link) {
+      var href = normalizePageRef(link.getAttribute('href') || '');
       var isCurrent = href === currentPath;
       link.classList.toggle('is-current', isCurrent);
 
@@ -518,11 +545,11 @@
   }
 
   function initFaqUi() {
-    if (!document.body.classList.contains('page-faq')) {
+    var categories = Array.prototype.slice.call(document.querySelectorAll('.faq-category'));
+    if (!categories.length) {
       return;
     }
 
-    var categories = Array.prototype.slice.call(document.querySelectorAll('.faq-category'));
     categories.forEach(function (category, categoryIndex) {
       var items = Array.prototype.slice.call(category.querySelectorAll('.faq-item'));
 
@@ -610,10 +637,6 @@
   }
 
   function initEducationSubsections() {
-    if (!document.body.classList.contains('page-athlete-education')) {
-      return;
-    }
-
     var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-education-track-target]'));
     var panels = Array.prototype.slice.call(document.querySelectorAll('[data-education-track-panel]'));
     var phaseDurationMs = 320;
@@ -1067,6 +1090,142 @@
     });
   }
 
+  function initAthleteTimeline() {
+    var wrapper = document.querySelector('.athlete-timeline-wrapper');
+    var track = document.querySelector('.athlete-timeline-track');
+    var prevBtn = document.querySelector('.athlete-timeline-arrow--prev');
+    var nextBtn = document.querySelector('.athlete-timeline-arrow--next');
+
+    if (!wrapper || !track || !prevBtn || !nextBtn) {
+      return;
+    }
+
+    var scrollAmount = 340;
+
+    prevBtn.addEventListener('click', function () {
+      track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', function () {
+      track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+
+    function updateArrows() {
+      var atStart = track.scrollLeft <= 4;
+      var atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      prevBtn.style.opacity = atStart ? '0.3' : '1';
+      prevBtn.style.pointerEvents = atStart ? 'none' : 'auto';
+      nextBtn.style.opacity = atEnd ? '0.3' : '1';
+      nextBtn.style.pointerEvents = atEnd ? 'none' : 'auto';
+    }
+
+    track.addEventListener('scroll', updateArrows, { passive: true });
+    updateArrows();
+  }
+
+  function initEntertainerCoverageCards() {
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.entertainer-artisan-coverage-card'));
+    var grid = document.querySelector('.entertainer-artisan-coverage-grid');
+    if (!cards.length || !grid) {
+      return;
+    }
+
+    var activeIndex = 0;
+    var rotationTimer = null;
+    var interactionLock = false;
+    var inViewport = true;
+
+    function setActive(index) {
+      var nextIndex = index;
+      if (nextIndex < 0) {
+        nextIndex = cards.length - 1;
+      } else if (nextIndex >= cards.length) {
+        nextIndex = 0;
+      }
+
+      activeIndex = nextIndex;
+      cards.forEach(function (card, idx) {
+        card.classList.toggle('is-active', idx === activeIndex);
+      });
+    }
+
+    function stopRotation() {
+      if (rotationTimer) {
+        window.clearInterval(rotationTimer);
+        rotationTimer = null;
+      }
+    }
+
+    function startRotation() {
+      if (reduceMotion || cards.length < 2 || interactionLock || !inViewport || rotationTimer) {
+        return;
+      }
+
+      rotationTimer = window.setInterval(function () {
+        setActive(activeIndex + 1);
+      }, 2800);
+    }
+
+    cards.forEach(function (card, idx) {
+      card.setAttribute('tabindex', '0');
+
+      card.addEventListener('mouseenter', function () {
+        interactionLock = true;
+        stopRotation();
+        setActive(idx);
+      });
+
+      card.addEventListener('mouseleave', function () {
+        interactionLock = false;
+        startRotation();
+      });
+
+      card.addEventListener('focus', function () {
+        interactionLock = true;
+        stopRotation();
+        setActive(idx);
+      });
+
+      card.addEventListener('blur', function () {
+        interactionLock = false;
+        startRotation();
+      });
+
+      card.addEventListener('click', function () {
+        setActive(idx);
+      });
+    });
+
+    setActive(0);
+
+    if ('IntersectionObserver' in window) {
+      inViewport = false;
+      var coverageObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.target !== grid) {
+              return;
+            }
+
+            inViewport = entry.isIntersecting;
+            if (inViewport) {
+              startRotation();
+            } else {
+              stopRotation();
+            }
+          });
+        },
+        {
+          threshold: 0.28
+        }
+      );
+
+      coverageObserver.observe(grid);
+    }
+
+    startRotation();
+  }
+
   initBaseReveal();
   initHeaderState();
   initActiveNav();
@@ -1077,4 +1236,6 @@
   initEducationSubsections();
   initServicesScrollRail();
   initContactForm();
+  initAthleteTimeline();
+  initEntertainerCoverageCards();
 })();
