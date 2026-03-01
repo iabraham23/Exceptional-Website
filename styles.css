@@ -2721,22 +2721,39 @@ button {
    strong typography contrast, structured
    ──────────────────────────────────────────── */
 
-/* Approach hero: angled gradient with oversized typography feel */
+/* Approach hero: layered, editorial gradient with subtle technical texture */
 .page-approach .page-hero {
-  background: linear-gradient(145deg, #0a0f1a 0%, #101a30 50%, #0d1a2d 100%);
+  background:
+    radial-gradient(1200px 520px at 86% -10%, rgba(201, 168, 76, 0.14), transparent 58%),
+    radial-gradient(900px 420px at 8% 102%, rgba(91, 143, 185, 0.12), transparent 62%),
+    linear-gradient(132deg, #090d17 0%, #10192b 46%, #0c1524 100%);
   position: relative;
   overflow: hidden;
 }
 
-/* Subtle grid pattern overlay */
+/* Refined texture overlay */
 .page-approach .page-hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(201, 168, 76, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201, 168, 76, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
+  background:
+    linear-gradient(112deg, rgba(201, 168, 76, 0.06) 0%, transparent 24%, transparent 76%, rgba(201, 168, 76, 0.04) 100%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.015) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.012) 0 1px, transparent 1px 64px);
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.page-approach .page-hero::after {
+  content: '';
+  position: absolute;
+  width: 460px;
+  height: 460px;
+  right: -120px;
+  bottom: -220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.14) 0%, rgba(201, 168, 76, 0) 72%);
+  filter: blur(4px);
   pointer-events: none;
 }
 
@@ -4134,6 +4151,46 @@ body.mobile-menu-open {
   --athlete-accent: #5b8fb9;
   --athlete-accent-muted: rgba(91, 143, 185, 0.15);
   --athlete-accent-border: rgba(91, 143, 185, 0.3);
+}
+
+/* -- Athlete Hero (Portal Intro) -- */
+.page-athletes .page-hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(900px 420px at 12% -8%, rgba(91, 143, 185, 0.2), transparent 58%),
+    radial-gradient(760px 340px at 88% 108%, rgba(201, 168, 76, 0.1), transparent 66%),
+    linear-gradient(136deg, #080f1c 0%, #0d1931 50%, #0b1528 100%);
+}
+
+.page-athletes .page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(201, 168, 76, 0.05) 0%, transparent 24%, transparent 78%, rgba(91, 143, 185, 0.08) 100%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.016) 0 1px, transparent 1px 86px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.012) 0 1px, transparent 1px 86px);
+  opacity: 0.52;
+  pointer-events: none;
+}
+
+.page-athletes .page-hero::after {
+  content: '';
+  position: absolute;
+  left: -140px;
+  bottom: -200px;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(91, 143, 185, 0.2) 0%, rgba(91, 143, 185, 0) 72%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.page-athletes .page-hero .section-container {
+  position: relative;
+  z-index: 1;
 }
 
 /* -- Athlete Hero -- */
