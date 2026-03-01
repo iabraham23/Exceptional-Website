@@ -5401,3 +5401,177 @@ body.mobile-menu-open {
   }
 
 }
+
+/* ============================================
+   HERO GRADIENT SYSTEM — Bold, editorial mesh
+   Inspired by modern fintech gradient language
+   ============================================ */
+
+.page-hero {
+  --hero-angle: 138deg;
+  --hero-base-1: #07101b;
+  --hero-base-2: #0f213e;
+  --hero-base-3: #091426;
+  --hero-glow-1: rgba(74, 160, 228, 0.24);
+  --hero-glow-2: rgba(201, 168, 76, 0.16);
+  --hero-glow-1-pos: 12% -12%;
+  --hero-glow-2-pos: 88% 112%;
+  --hero-grid-opacity: 0.44;
+}
+
+.page-services .page-hero {
+  --hero-angle: 140deg;
+  --hero-base-1: #08101d;
+  --hero-base-2: #102343;
+  --hero-base-3: #0b1527;
+  --hero-glow-1: rgba(77, 168, 239, 0.27);
+  --hero-glow-2: rgba(201, 168, 76, 0.23);
+}
+
+.page-about .page-hero {
+  --hero-angle: 136deg;
+  --hero-base-1: #070f1a;
+  --hero-base-2: #101d37;
+  --hero-base-3: #091527;
+  --hero-glow-1: rgba(73, 160, 228, 0.16);
+  --hero-glow-2: rgba(201, 168, 76, 0.16);
+  --hero-glow-1-pos: 18% -16%;
+  --hero-glow-2-pos: 84% 112%;
+}
+
+.page-approach .page-hero {
+  --hero-angle: 136deg;
+  --hero-base-1: #060e19;
+  --hero-base-2: #0f1c34;
+  --hero-base-3: #081426;
+  --hero-glow-1: rgba(74, 161, 230, 0.15);
+  --hero-glow-2: rgba(201, 168, 76, 0.16);
+}
+
+.page-contact .page-hero {
+  --hero-angle: 138deg;
+  --hero-base-1: #07101a;
+  --hero-base-2: #0f1d36;
+  --hero-base-3: #091527;
+  --hero-glow-1: rgba(72, 156, 223, 0.15);
+  --hero-glow-2: rgba(201, 168, 76, 0.16);
+}
+
+.page-athlete-education .page-hero {
+  --hero-angle: 138deg;
+  --hero-base-1: #070f1a;
+  --hero-base-2: #0f223d;
+  --hero-base-3: #091629;
+  --hero-glow-1: rgba(76, 164, 233, 0.17);
+  --hero-glow-2: rgba(201, 168, 76, 0.16);
+  --hero-grid-opacity: 0.42;
+}
+
+.page-athletes .page-hero {
+  --hero-angle: 138deg;
+  --hero-base-1: #070f1a;
+  --hero-base-2: #10233f;
+  --hero-base-3: #09162a;
+  --hero-glow-1: rgba(78, 168, 238, 0.18);
+  --hero-glow-2: rgba(201, 168, 76, 0.16);
+  --hero-grid-opacity: 0.45;
+}
+
+.page-entertainers .page-hero {
+  --hero-angle: 134deg;
+  --hero-base-1: #070f1a;
+  --hero-base-2: #0f1c35;
+  --hero-base-3: #0a1527;
+  --hero-glow-1: rgba(72, 156, 224, 0.15);
+  --hero-glow-2: rgba(201, 168, 76, 0.16);
+  --hero-glow-1-pos: 84% -12%;
+  --hero-glow-2-pos: 10% 112%;
+}
+
+.page-faq .page-hero {
+  --hero-angle: 136deg;
+  --hero-base-1: #07101a;
+  --hero-base-2: #0f1c35;
+  --hero-base-3: #091527;
+  --hero-glow-1: rgba(70, 152, 220, 0.14);
+  --hero-glow-2: rgba(201, 168, 76, 0.15);
+  --hero-grid-opacity: 0.38;
+}
+
+.page-services .page-hero,
+.page-about .page-hero,
+.page-approach .page-hero,
+.page-contact .page-hero,
+.page-athlete-education .page-hero,
+.page-athletes .page-hero,
+.page-entertainers .page-hero,
+.page-faq .page-hero {
+  background: linear-gradient(
+    var(--hero-angle),
+    var(--hero-base-1) 0%,
+    var(--hero-base-2) 52%,
+    var(--hero-base-3) 100%
+  );
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.page-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.page-services .page-hero::before,
+.page-about .page-hero::before,
+.page-approach .page-hero::before,
+.page-contact .page-hero::before,
+.page-athlete-education .page-hero::before,
+.page-athletes .page-hero::before,
+.page-entertainers .page-hero::before,
+.page-faq .page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(950px 440px at var(--hero-glow-1-pos), var(--hero-glow-1), transparent 60%),
+    radial-gradient(760px 360px at var(--hero-glow-2-pos), var(--hero-glow-2), transparent 66%),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.035) 0%, transparent 26%, transparent 74%, rgba(255, 255, 255, 0.025) 100%);
+  pointer-events: none;
+  z-index: -2;
+}
+
+.page-services .page-hero::after,
+.page-about .page-hero::after,
+.page-approach .page-hero::after,
+.page-contact .page-hero::after,
+.page-athlete-education .page-hero::after,
+.page-athletes .page-hero::after,
+.page-entertainers .page-hero::after,
+.page-faq .page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.016) 0 1px, transparent 1px 88px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.012) 0 1px, transparent 1px 88px);
+  opacity: var(--hero-grid-opacity);
+  pointer-events: none;
+  z-index: -1;
+}
+
+@media (max-width: 768px) {
+  .page-services .page-hero::after,
+  .page-about .page-hero::after,
+  .page-approach .page-hero::after,
+  .page-contact .page-hero::after,
+  .page-athlete-education .page-hero::after,
+  .page-athletes .page-hero::after,
+  .page-entertainers .page-hero::after,
+  .page-faq .page-hero::after {
+    opacity: 0.24;
+    background:
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.014) 0 1px, transparent 1px 56px),
+      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.01) 0 1px, transparent 1px 56px);
+  }
+}
