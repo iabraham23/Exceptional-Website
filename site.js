@@ -205,7 +205,7 @@
 
     var currentPath = normalizePageRef(window.location.pathname);
 
-    document.querySelectorAll('.nav-links a').forEach(function (link) {
+    document.querySelectorAll('.nav-links > li > a').forEach(function (link) {
       var href = normalizePageRef(link.getAttribute('href') || '');
       var isCurrent = href === currentPath;
       link.classList.toggle('is-current', isCurrent);
