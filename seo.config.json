@@ -1,0 +1,78 @@
+{
+  "siteUrl": "https://exceptional-website.vercel.app",
+  "ogImagePath": "/assets/exceptional-logo-gold.svg",
+  "financialServiceUrlPath": "/",
+  "defaultLastmod": "2026-02-28",
+  "pages": {
+    "index.html": {
+      "canonicalPath": "/",
+      "ogPath": "/"
+    },
+    "services.html": {
+      "canonicalPath": "/services",
+      "ogPath": "/services"
+    },
+    "athletes.html": {
+      "canonicalPath": "/athletes",
+      "ogPath": "/athletes"
+    },
+    "entertainers.html": {
+      "canonicalPath": "/entertainers",
+      "ogPath": "/entertainers"
+    },
+    "approach.html": {
+      "canonicalPath": "/approach",
+      "ogPath": "/approach"
+    },
+    "about.html": {
+      "canonicalPath": "/about",
+      "ogPath": "/about"
+    },
+    "contact.html": {
+      "canonicalPath": "/contact",
+      "ogPath": "/contact"
+    },
+    "athlete-education.html": {
+      "canonicalPath": "/athletes",
+      "ogPath": "/athletes",
+      "robots": "noindex,follow"
+    }
+  },
+  "sitemap": [
+    {
+      "path": "/",
+      "changefreq": "weekly",
+      "priority": "1.0"
+    },
+    {
+      "path": "/services",
+      "changefreq": "weekly",
+      "priority": "0.9"
+    },
+    {
+      "path": "/athletes",
+      "changefreq": "weekly",
+      "priority": "0.9"
+    },
+    {
+      "path": "/entertainers",
+      "changefreq": "weekly",
+      "priority": "0.9"
+    },
+    {
+      "path": "/approach",
+      "changefreq": "weekly",
+      "priority": "0.8"
+    },
+    {
+      "path": "/about",
+      "changefreq": "monthly",
+      "priority": "0.7"
+    },
+    {
+      "path": "/contact",
+      "changefreq": "monthly",
+      "priority": "0.9"
+    }
+  ]
+}
