@@ -13,3 +13,4 @@ __pycache__/
 cwc_indev_website/
 copy_rewrite_phase1.md
 reference_websites.md
+.vscode
