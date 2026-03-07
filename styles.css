@@ -250,6 +250,7 @@ button {
   display: flex;
   align-items: center;
   gap: 36px;
+  margin-left: clamp(20px, 3vw, 48px);
 }
 
 .nav-links li {
@@ -358,8 +359,23 @@ button {
 }
 
 .nav-cta {
+  min-height: 40px;
   padding: 12px 24px;
   font-size: 14px;
+}
+
+.nav-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.nav-login {
+  min-height: 40px;
+  padding: 11px 20px;
+  font-size: 14px;
+  border-color: rgba(201, 168, 76, 0.62);
 }
 
 .mobile-menu-toggle {
@@ -1121,7 +1137,7 @@ button {
 
   /* Nav */
   .nav-links,
-  .nav-cta {
+  .nav-actions {
     display: none;
   }
 
@@ -1180,12 +1196,17 @@ button {
     background: rgba(201, 168, 76, 0.12);
   }
 
-  .site-header.menu-open .nav-cta {
+  .site-header.menu-open .nav-actions {
     order: 4;
-    display: inline-flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     width: 100%;
-    justify-content: center;
+    gap: 8px;
     margin-top: 2px;
+  }
+
+  .site-header.menu-open .nav-actions .btn {
+    width: 100%;
   }
 
   .site-header.menu-open .mobile-menu-toggle span:nth-child(1) {

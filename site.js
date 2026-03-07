@@ -223,9 +223,9 @@
     var nav = document.querySelector('.nav-container');
     var toggle = document.querySelector('.mobile-menu-toggle');
     var navLinks = document.querySelector('.nav-links');
-    var navCta = document.querySelector('.nav-cta');
+    var navActions = document.querySelector('.nav-actions');
 
-    if (!header || !nav || !toggle || !navLinks || !navCta) {
+    if (!header || !nav || !toggle || !navLinks || !navActions) {
       return;
     }
 
@@ -254,7 +254,9 @@
       link.addEventListener('click', closeMenu);
     });
 
-    navCta.addEventListener('click', closeMenu);
+    navActions.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeMenu);
+    });
 
     document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape') {

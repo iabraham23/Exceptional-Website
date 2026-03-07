@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Setesca Capital Abstract Concept</title>
+  <desc id="desc">Abstract geometric arch mark in gold with Setesca Capital wordmark.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#111A24"/>
+      <stop offset="100%" stop-color="#1C2735"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E0C675"/>
+      <stop offset="50%" stop-color="#C9A84C"/>
+      <stop offset="100%" stop-color="#9D7822"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+
+  <g transform="translate(180 130)">
+    <path d="M250 420 C250 286 356 180 490 180 C624 180 730 286 730 420 L670 420 C670 319 591 240 490 240 C389 240 310 319 310 420 Z" fill="url(#gold)"/>
+    <path d="M330 420 C330 332 402 260 490 260 C578 260 650 332 650 420 L592 420 C592 363 547 318 490 318 C433 318 388 363 388 420 Z" fill="#D8BE70" fill-opacity="0.92"/>
+    <rect x="260" y="448" width="460" height="8" rx="4" fill="#B9912F" fill-opacity="0.75"/>
+  </g>
+
+  <g transform="translate(1000 406)">
+    <text x="0" y="0" fill="#F4E8C8" font-family="'Times New Roman', Georgia, serif" font-size="102" letter-spacing="6">SETESCA</text>
+    <text x="3" y="78" fill="#D8BF72" font-family="'Helvetica Neue', Arial, sans-serif" font-size="44" letter-spacing="11">CAPITAL</text>
+    <rect x="2" y="105" width="540" height="2" fill="#C9A84C" fill-opacity="0.75"/>
+    <text x="2" y="156" fill="#CDB065" font-family="'Helvetica Neue', Arial, sans-serif" font-size="26" letter-spacing="4">DISCIPLINE   |   CLARITY   |   STEWARDSHIP</text>
+  </g>
+</svg>
