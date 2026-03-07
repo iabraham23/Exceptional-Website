@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="160" viewBox="0 0 240 160" role="img" aria-label="Orion">
+  <rect width="240" height="160" rx="16" fill="#FFFFFF"/>
+  <text x="116" y="96" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="50" font-weight="800" fill="#04329A">ORION</text>
+  <path d="M184 51 L205 51 L192 68 L171 68 Z" fill="#00CFE8"/>
+  <path d="M171 94 L192 94 L205 111 L184 111 Z" fill="#00CFE8"/>
+  <rect x="3" y="3" width="234" height="154" rx="13" fill="none" stroke="#D3DDE7"/>
+</svg>

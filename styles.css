@@ -2973,6 +2973,69 @@ button {
   box-shadow: 0 0 12px rgba(201, 168, 76, 0.2);
 }
 
+/* Client login page */
+.page-client-login .page-hero {
+  background: radial-gradient(circle at 50% 100%, rgba(201, 168, 76, 0.1) 0%, rgba(10, 15, 26, 0.96) 56%);
+  padding-bottom: 96px;
+}
+
+.client-login-section {
+  padding: 0 0 110px;
+}
+
+.client-portal-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.client-portal-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 28px;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(21, 30, 49, 0.98) 0%, rgba(11, 17, 30, 0.98) 100%);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+}
+
+.client-portal-heading {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+}
+
+.client-portal-logo {
+  width: 120px;
+  height: 72px;
+  flex: 0 0 120px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid rgba(201, 168, 76, 0.38);
+  padding: 8px 10px;
+}
+
+.client-portal-card h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(26px, 2.1vw, 34px);
+  line-height: 1.1;
+  color: var(--color-text-primary);
+  text-align: left;
+}
+
+.client-portal-link {
+  width: auto;
+  min-width: 210px;
+  white-space: nowrap;
+}
+
 /* ────────────────────────────────────────────
    FAQ PAGE — Clean, editorial, easy to scan,
    numbered categories, wide spacing
@@ -3031,6 +3094,40 @@ button {
   color: var(--color-gold);
   pointer-events: none;
   font-size: 14px;
+}
+
+@media (max-width: 1024px) {
+  .client-portal-card h2 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .client-portal-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .client-portal-heading {
+    gap: 12px;
+    align-items: center;
+  }
+
+  .client-portal-logo {
+    width: 86px;
+    height: 62px;
+    flex-basis: 86px;
+    padding: 8px;
+  }
+
+  .client-portal-card h2 {
+    font-size: 24px;
+  }
+
+  .client-portal-link {
+    width: 100%;
+    min-width: 0;
+  }
 }
 
 .page-faq .faq-topic-select {
