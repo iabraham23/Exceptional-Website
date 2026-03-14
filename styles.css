@@ -819,76 +819,148 @@ button {
 .career-timeline {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  gap: 18px;
+  align-items: stretch;
 }
 
 .career-card {
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 36px 28px;
-  transition: all var(--transition-base);
+  border-radius: 12px;
+  padding: 40px 28px 34px;
+  transition: transform 0.35s ease, border-color 0.35s ease,
+              background 0.35s ease, box-shadow 0.35s ease;
   position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Gold sweep line across the top */
+.career-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(201, 168, 76, 0.6) 25%,
+    #dfc06a 50%,
+    rgba(201, 168, 76, 0.6) 75%,
+    transparent 100%);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Radial spotlight glow — brand nod */
+.career-card::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle,
+    rgba(201, 168, 76, 0.16) 0%,
+    rgba(201, 168, 76, 0.05) 50%,
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
 }
 
 .career-card:hover {
   background: var(--color-bg-card-hover);
-  border-color: rgba(201, 168, 76, 0.2);
-  transform: translateY(-2px);
+  border-color: rgba(201, 168, 76, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 56px -14px rgba(201, 168, 76, 0.3),
+              0 6px 20px -4px rgba(0, 0, 0, 0.45);
+}
+
+.career-card:hover::before {
+  transform: scaleX(1);
+}
+
+.career-card:hover::after {
+  opacity: 1;
 }
 
 .career-stage-marker {
   font-family: var(--font-display);
-  font-size: 36px;
+  font-size: 52px;
   font-weight: 700;
   color: var(--color-gold);
-  opacity: 0.3;
-  margin-bottom: 20px;
+  opacity: 0.5;
+  margin-bottom: 18px;
   line-height: 1;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  position: relative;
+  z-index: 1;
 }
 
 .career-card:hover .career-stage-marker {
-  opacity: 0.6;
+  opacity: 1;
+  transform: scale(1.06) translateX(2px);
 }
 
 .career-card-title {
   font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 19px;
+  font-weight: 700;
   color: var(--color-text-primary);
-  margin-bottom: 12px;
+  margin-bottom: 22px;
+  line-height: 1.25;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
-.career-card-text {
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--color-text-secondary);
-  margin-bottom: 20px;
+.career-card:hover .career-card-title {
+  color: #e8d08a;
 }
 
 .career-card-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 11px;
+  margin-top: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .career-card-list li {
-  font-size: 13px;
-  color: var(--color-text-muted);
-  padding-left: 16px;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.72);
+  padding-left: 18px;
   position: relative;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.career-card:hover .career-card-list li {
+  color: rgba(255, 255, 255, 0.82);
+  padding-left: 22px;
 }
 
 .career-card-list li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 8px;
+  top: 7px;
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background-color: var(--color-gold);
-  opacity: 0.5;
+  opacity: 0.55;
+  transition: opacity 0.3s ease, left 0.3s ease;
+}
+
+.career-card:hover .career-card-list li::before {
+  opacity: 1;
+  left: 4px;
 }
 
 /* ============================================
@@ -1121,6 +1193,7 @@ button {
 
   .career-timeline {
     grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
   }
 
   .cta-headline {
@@ -1298,10 +1371,18 @@ button {
     font-size: 26px;
   }
 
-  /* Career */
+  /* Career — mobile: single column */
   .career-timeline {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 10px;
+  }
+
+  .career-card {
+    padding: 24px 20px;
+  }
+
+  .career-stage-marker {
+    font-size: 32px;
   }
 
   /* CTA */
