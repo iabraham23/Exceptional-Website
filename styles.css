@@ -414,60 +414,61 @@ button {
   margin: 0 auto;
   padding: 80px var(--container-padding);
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
-  gap: 64px;
-  align-items: end;
+  grid-template-columns: 1fr 0.7fr;
+  gap: 72px;
+  align-items: center;
 }
 
 .hero-content {
-  max-width: 760px;
+  min-width: 0;
 }
 
 .hero-eyebrow {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--color-gold);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(46px, 5.6vw, 66px);
+  font-size: clamp(40px, 4.6vw, 60px);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.08;
   color: var(--color-text-primary);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   text-wrap: balance;
 }
 
 .hero-subtext {
-  font-size: 19px;
-  line-height: 1.7;
+  font-size: 17px;
+  line-height: 1.75;
   color: var(--color-text-secondary);
   margin-bottom: 40px;
-  max-width: 62ch;
+  max-width: 50ch;
 }
 
 .hero-cta-group {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
 .hero-image {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
+  height: 100%;
 }
 
 .hero-image-placeholder {
   width: 100%;
-  aspect-ratio: 4 / 4.8;
-  max-width: 420px;
+  aspect-ratio: 3 / 4;
+  max-width: 380px;
   background: linear-gradient(145deg, var(--color-bg-card), var(--color-surface));
-  border-radius: 12px;
+  border-radius: 16px;
   border: 1px solid var(--color-border);
   display: flex;
   align-items: center;
@@ -486,7 +487,7 @@ button {
    AUDIENCE PORTALS
    ============================================ */
 .audience-portals-section {
-  padding: 72px 0 88px;
+  padding: 80px 0 96px;
   background: linear-gradient(180deg, var(--color-bg-dark) 0%, var(--color-bg-deep) 100%);
   border-top: 1px solid var(--color-border-light);
 }
@@ -494,68 +495,108 @@ button {
 .audience-portals-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  gap: 28px;
+  align-items: stretch;
 }
 
 .audience-portal-card {
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
-  padding: 32px;
-  background: linear-gradient(160deg, rgba(20, 28, 46, 0.98) 0%, rgba(18, 26, 42, 0.96) 100%);
+  position: relative;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 14px;
+  padding: 44px 40px 40px;
+  background: linear-gradient(150deg, rgba(22, 32, 52, 0.98) 0%, rgba(14, 20, 36, 0.98) 100%);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  overflow: hidden;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+/* Gold top bar */
+.audience-portal-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #c9a84c 30%, #dfc06a 50%, #c9a84c 70%, transparent);
+}
+
+/* Corner radial glow */
+.audience-portal-card::after {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.09) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.audience-portal-card:hover {
+  border-color: rgba(201, 168, 76, 0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 56px -14px rgba(201, 168, 76, 0.2),
+              0 4px 16px -4px rgba(0, 0, 0, 0.5);
 }
 
 .audience-portal-kicker {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--color-gold);
-  margin-bottom: 10px;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 1;
 }
 
 .audience-portal-card h3 {
   font-family: var(--font-display);
-  font-size: 32px;
+  font-size: 38px;
+  font-weight: 700;
   color: var(--color-text-primary);
-  margin-bottom: 14px;
-}
-
-.audience-portal-card p {
-  font-size: 16px;
-  line-height: 1.75;
-  color: var(--color-text-secondary);
-  margin-bottom: 16px;
+  margin-bottom: 28px;
+  line-height: 1.1;
+  position: relative;
+  z-index: 1;
 }
 
 .audience-portal-card ul {
-  display: grid;
-  gap: 8px;
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 1;
 }
 
 .audience-portal-card li {
-  font-size: 14px;
-  color: var(--color-text-secondary);
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.68);
   position: relative;
-  padding-left: 16px;
+  padding-left: 18px;
+  line-height: 1.5;
 }
 
 .audience-portal-card li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 9px;
-  width: 5px;
-  height: 5px;
+  top: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--color-gold);
+  opacity: 0.7;
 }
 
 .audience-portal-card .btn {
   margin-top: auto;
+  position: relative;
+  z-index: 1;
 }
 
 /* ============================================
@@ -1301,21 +1342,26 @@ button {
   /* Hero */
   .hero-container {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 44px;
     padding: 60px var(--container-padding);
   }
 
+  .hero-image {
+    justify-content: center;
+  }
+
   .hero-headline {
-    font-size: 40px;
+    font-size: 38px;
   }
 
   .hero-subtext {
-    font-size: 17px;
+    font-size: 16px;
+    max-width: 100%;
   }
 
   .hero-image-placeholder {
-    max-width: 360px;
-    aspect-ratio: 1 / 1;
+    max-width: 340px;
+    aspect-ratio: 3 / 4;
   }
 
   /* Stats */
