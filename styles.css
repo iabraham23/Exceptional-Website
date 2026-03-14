@@ -224,27 +224,30 @@ button {
 .logo-text {
   display: flex;
   flex-direction: column;
-  line-height: 1.02;
+  line-height: 1.1;
   font-family: var(--font-display);
   color: var(--color-text-primary);
-}
-
-.logo-text-top,
-.logo-text-bottom {
-  display: block;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  gap: 5px;
 }
 
 .logo-text-top {
+  display: block;
+  font-weight: 700;
   font-size: 17px;
+  letter-spacing: 0.02em;
   white-space: nowrap;
 }
 
 .logo-text-bottom {
-  font-size: 15px;
-  letter-spacing: 0.01em;
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   white-space: nowrap;
+  color: #c9a84c;
+  opacity: 1;
 }
 
 .nav-links {
@@ -975,13 +978,13 @@ button {
   height: 30px;
 }
 
-.footer-logo .logo-text-top,
-.footer-logo .logo-text-bottom {
+.footer-logo .logo-text-top {
   font-size: 16px;
 }
 
 .footer-logo .logo-text-bottom {
-  font-size: 14px;
+  font-size: 10.5px;
+  letter-spacing: 0.11em;
 }
 
 .footer-tagline {
