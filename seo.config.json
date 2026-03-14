@@ -1,5 +1,5 @@
 {
-  "siteUrl": "https://exceptional-website.vercel.app",
+  "siteUrl": "https://www.spotlightseg.com",
   "ogImagePath": "/assets/exceptional-logo-gold.svg",
   "financialServiceUrlPath": "/",
   "defaultLastmod": "2026-02-28",
@@ -31,6 +31,11 @@
     "contact.html": {
       "canonicalPath": "/contact",
       "ogPath": "/contact"
+    },
+    "client-login.html": {
+      "canonicalPath": "/client-login",
+      "ogPath": "/client-login",
+      "robots": "noindex,follow"
     },
     "athlete-education.html": {
       "canonicalPath": "/athletes",
