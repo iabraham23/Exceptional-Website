@@ -1,8 +1,11 @@
 {
   "siteUrl": "https://www.spotlightseg.com",
-  "ogImagePath": "/assets/exceptional-logo-gold.svg",
+  "siteName": "Spotlight Wealth Partners",
+  "businessName": "Spotlight Wealth Partners",
+  "ogImagePath": "/assets/spotlight-wealth-partners-mark.svg",
+  "faviconPath": "/assets/spotlight-wealth-partners-mark.svg",
   "financialServiceUrlPath": "/",
-  "defaultLastmod": "2026-02-28",
+  "defaultLastmod": "2026-03-16",
   "pages": {
     "index.html": {
       "canonicalPath": "/",
