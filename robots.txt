@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.spotlightseg.com/sitemap.xml
+Sitemap: https://www.spotlightwealthpartners.com/sitemap.xml
