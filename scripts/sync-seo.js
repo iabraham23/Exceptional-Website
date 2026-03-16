@@ -30,7 +30,16 @@ function replaceTagContent(html, pattern, replacement, filePath, label) {
   return html.replace(pattern, replacement);
 }
 
-function syncHtmlPage(filePath, pageConfig, siteUrl, ogImageUrl, financialServiceUrl) {
+function syncHtmlPage(
+  filePath,
+  pageConfig,
+  siteUrl,
+  siteName,
+  businessName,
+  ogImageUrl,
+  faviconUrl,
+  financialServiceUrl
+) {
   let html = fs.readFileSync(filePath, "utf8");
 
   const canonicalUrl = buildAbsoluteUrl(siteUrl, pageConfig.canonicalPath);
@@ -42,6 +51,14 @@ function syncHtmlPage(filePath, pageConfig, siteUrl, ogImageUrl, financialServic
     `<link rel="canonical" href="${canonicalUrl}">`,
     filePath,
     "canonical tag"
+  );
+
+  html = replaceTagContent(
+    html,
+    /<meta property="og:site_name" content="[^"]*">/,
+    `<meta property="og:site_name" content="${siteName}">`,
+    filePath,
+    "og:site_name meta tag"
   );
 
   html = replaceTagContent(
@@ -66,6 +83,30 @@ function syncHtmlPage(filePath, pageConfig, siteUrl, ogImageUrl, financialServic
     `<meta name="twitter:image" content="${ogImageUrl}">`,
     filePath,
     "twitter:image meta tag"
+  );
+
+  html = replaceTagContent(
+    html,
+    /<link rel="icon" type="image\/svg\+xml" href="[^"]*">/,
+    `<link rel="icon" type="image/svg+xml" href="${faviconUrl}">`,
+    filePath,
+    "icon link tag"
+  );
+
+  html = replaceTagContent(
+    html,
+    /<link rel="shortcut icon" href="[^"]*">/,
+    `<link rel="shortcut icon" href="${faviconUrl}">`,
+    filePath,
+    "shortcut icon link tag"
+  );
+
+  html = replaceTagContent(
+    html,
+    /("@type": "FinancialService"[\s\S]*?"name":\s*")[^"]*(")/,
+    `$1${businessName}$2`,
+    filePath,
+    "FinancialService name field"
   );
 
   html = replaceTagContent(
@@ -131,7 +172,10 @@ function buildRobots(siteUrl) {
 function main() {
   const config = readJson(configPath);
   const siteUrl = stripTrailingSlash(config.siteUrl);
+  const siteName = config.siteName;
+  const businessName = config.businessName || siteName;
   const ogImageUrl = buildAbsoluteUrl(siteUrl, config.ogImagePath);
+  const faviconUrl = ensureLeadingSlash(config.faviconPath || config.ogImagePath);
   const financialServiceUrl = buildAbsoluteUrl(
     siteUrl,
     config.financialServiceUrlPath || "/"
@@ -142,7 +186,16 @@ function main() {
     if (!fs.existsSync(filePath)) {
       throw new Error(`Configured file not found: ${fileName}`);
     }
-    syncHtmlPage(filePath, pageConfig, siteUrl, ogImageUrl, financialServiceUrl);
+    syncHtmlPage(
+      filePath,
+      pageConfig,
+      siteUrl,
+      siteName,
+      businessName,
+      ogImageUrl,
+      faviconUrl,
+      financialServiceUrl
+    );
   });
 
   const sitemapXml = buildSitemap(siteUrl, config.sitemap, config.defaultLastmod);

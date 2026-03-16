@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title>Spotlight Wealth Partners mark</title>
+  <desc>Gold spotlight mark on a deep navy background.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#b9852f"/>
+      <stop offset="48%" stop-color="#f1cf6b"/>
+      <stop offset="70%" stop-color="#ffe697"/>
+      <stop offset="100%" stop-color="#c69237"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="50%" y1="12%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#ffe699" stop-opacity="0.98"/>
+      <stop offset="24%" stop-color="#f0cb6a" stop-opacity="0.9"/>
+      <stop offset="62%" stop-color="#7d643a" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#141b39" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="stage" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#fff0af" stop-opacity="1"/>
+      <stop offset="28%" stop-color="#f2cd68" stop-opacity="0.98"/>
+      <stop offset="72%" stop-color="#b7832d" stop-opacity="0.92"/>
+      <stop offset="100%" stop-color="#8a5f1f" stop-opacity="0.78"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="512" height="512" fill="#111830"/>
+
+  <rect x="165" y="98" width="69" height="8" rx="4" fill="url(#gold)"/>
+  <rect x="278" y="98" width="69" height="8" rx="4" fill="url(#gold)"/>
+  <circle cx="256" cy="98" r="16" fill="url(#gold)"/>
+  <rect x="249" y="109" width="14" height="19" rx="6" fill="url(#gold)"/>
+
+  <path d="M256 124 L355 344 Q256 335 157 344 Z" fill="url(#beam)"/>
+  <ellipse cx="256" cy="388" rx="152" ry="20" fill="url(#stage)"/>
+  <ellipse cx="256" cy="388" rx="152" ry="20" fill="url(#stage)" opacity="0.25" transform="translate(0 4) scale(0.97 0.9)"/>
+</svg>
