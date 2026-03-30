@@ -460,60 +460,6 @@ button {
   max-width: 50ch;
 }
 
-.national-proof-section {
-  padding: 72px 0 88px;
-  background:
-    linear-gradient(180deg, rgba(10, 15, 26, 0.96) 0%, rgba(15, 21, 37, 0.98) 100%);
-  border-top: 1px solid var(--color-border-light);
-  border-bottom: 1px solid rgba(201, 168, 76, 0.08);
-}
-
-.national-proof-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-}
-
-.national-proof-card {
-  position: relative;
-  padding: 32px 28px;
-  border-radius: 14px;
-  border: 1px solid rgba(201, 168, 76, 0.18);
-  background: linear-gradient(150deg, rgba(22, 32, 52, 0.94) 0%, rgba(14, 20, 36, 0.94) 100%);
-  overflow: hidden;
-}
-
-.national-proof-card::before {
-  content: '';
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 3px;
-  background: linear-gradient(180deg, rgba(223, 192, 106, 0.9), rgba(201, 168, 76, 0.28));
-}
-
-.national-proof-kicker {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  margin-bottom: 14px;
-}
-
-.national-proof-card h3 {
-  font-family: var(--font-display);
-  font-size: 28px;
-  line-height: 1.18;
-  color: var(--color-text-primary);
-  margin-bottom: 14px;
-}
-
-.national-proof-card p {
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--color-text-secondary);
-}
-
 .hero-cta-group {
   display: flex;
   gap: 14px;
@@ -1318,9 +1264,6 @@ button {
     gap: 48px;
   }
 
-  .national-proof-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 768px) {
@@ -1447,14 +1390,6 @@ button {
   .hero-image-placeholder {
     max-width: 340px;
     aspect-ratio: 3 / 4;
-  }
-
-  .national-proof-section {
-    padding: 64px 0 72px;
-  }
-
-  .national-proof-grid {
-    grid-template-columns: 1fr;
   }
 
   /* Stats */
