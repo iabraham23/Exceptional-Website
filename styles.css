@@ -224,10 +224,10 @@ button {
 .logo-text {
   display: flex;
   flex-direction: column;
-  line-height: 1.1;
+  line-height: 1.05;
   font-family: var(--font-display);
   color: var(--color-text-primary);
-  gap: 5px;
+  gap: 4px;
 }
 
 .logo-text-top {
@@ -248,6 +248,16 @@ button {
   white-space: nowrap;
   color: #c9a84c;
   opacity: 1;
+}
+
+.logo-text-subline {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.86);
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -632,6 +642,14 @@ button {
   color: var(--color-gold);
   line-height: 1.2;
   margin-bottom: 8px;
+}
+
+.stat-number-compact {
+  font-size: 32px;
+  line-height: 1.15;
+  max-width: 180px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .stat-label {
@@ -1245,6 +1263,7 @@ button {
     grid-template-columns: 1fr;
     gap: 48px;
   }
+
 }
 
 @media (max-width: 768px) {
@@ -1286,6 +1305,15 @@ button {
 
   .site-header.menu-open .logo {
     flex: 1;
+  }
+
+  .logo-text {
+    gap: 3px;
+  }
+
+  .logo-text-subline {
+    font-size: 7.5px;
+    letter-spacing: 0.03em;
   }
 
   .site-header.menu-open .nav-links {
@@ -1978,17 +2006,17 @@ button {
   font-style: italic;
 }
 
-/* Portland Section */
-.portland-section {
+/* National Service Section */
+.national-service-section {
   padding: var(--section-padding) 0;
   background: linear-gradient(180deg, var(--color-bg-deep) 0%, var(--color-bg-dark) 100%);
 }
 
-.portland-section .story-grid {
+.national-service-section .story-grid {
   grid-template-columns: 0.8fr 1.2fr;
 }
 
-.portland-section .story-image-placeholder {
+.national-service-section .story-image-placeholder {
   aspect-ratio: 4 / 3;
 }
 
@@ -2560,7 +2588,7 @@ button {
     gap: 48px;
   }
 
-  .portland-section .story-grid {
+  .national-service-section .story-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2863,8 +2891,8 @@ button {
   background: var(--color-bg-card-hover);
 }
 
-/* Portland section — warm gradient overlay */
-.page-about .portland-section {
+/* National service section — warm gradient overlay */
+.page-about .national-service-section {
   background: linear-gradient(135deg, var(--color-bg-deep) 0%, rgba(201, 168, 76, 0.03) 50%, var(--color-bg-dark) 100%);
 }
 
