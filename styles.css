@@ -473,6 +473,39 @@ button {
   height: 100%;
 }
 
+.hero-image-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  max-width: 380px;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+
+.tab-image-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.story-image-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.education-slot-photo {
+  width: 100%;
+  aspect-ratio: 16 / 6;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
 .hero-image-placeholder {
   width: 100%;
   aspect-ratio: 3 / 4;
